@@ -1,0 +1,998 @@
+<!DOCTYPE html><html lang="zh-cn" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>数字信号处理复习总结 | Welcome!</title><meta name="author" content="索心弓"><meta name="copyright" content="索心弓"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="数字信号处理复习总结 01 信号的时域分析 一、信号的分类  周期信号的 x(t), y(t) 的周期为T1和T2，若周期之比 T1&#x2F;T2 为有理数，则其和信号 x(t) + y(t) 仍然是周期信号，其周期为 T1 和 T2 的最小公倍数。 周期信号可能分解为周期信号, 非周期信号也可能分解为周期信号 连续正弦信号一定是周期信号,而正弦序列不一定是周期序列。两连续周期信号之">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数字信号处理复习总结">
+<meta property="og:url" content="https://sjh200514.github.io/2025/12/24/%E6%95%B0%E5%AD%97%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86/index.html">
+<meta property="og:site_name" content="Welcome!">
+<meta property="og:description" content="数字信号处理复习总结 01 信号的时域分析 一、信号的分类  周期信号的 x(t), y(t) 的周期为T1和T2，若周期之比 T1&#x2F;T2 为有理数，则其和信号 x(t) + y(t) 仍然是周期信号，其周期为 T1 和 T2 的最小公倍数。 周期信号可能分解为周期信号, 非周期信号也可能分解为周期信号 连续正弦信号一定是周期信号,而正弦序列不一定是周期序列。两连续周期信号之">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://sjh200514.github.io/img/butterfly-icon.png">
+<meta property="article:published_time" content="2025-12-23T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-12-24T11:41:24.946Z">
+<meta property="article:author" content="索心弓">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://sjh200514.github.io/img/butterfly-icon.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "数字信号处理复习总结",
+  "url": "https://sjh200514.github.io/2025/12/24/%E6%95%B0%E5%AD%97%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86/",
+  "image": "https://sjh200514.github.io/img/butterfly-icon.png",
+  "datePublished": "2025-12-23T16:00:00.000Z",
+  "dateModified": "2025-12-24T11:41:24.946Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "索心弓",
+      "url": "https://sjh200514.github.io"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://sjh200514.github.io/2025/12/24/%E6%95%B0%E5%AD%97%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.3"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":500,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Failed',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.12.0/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '数字信号处理复习总结',
+  isHighlightShrink: true,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">1</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">1</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/%E6%B8%B8%E6%88%8F%E6%B5%8B%E8%AF%84/"><i class="fa-fw fas fa-gamepad"></i><span> 游戏测评</span></a></div><div class="menus_item"><a class="site-page" href="/categories/%E4%BB%A3%E7%A0%81%E5%88%86%E4%BA%AB/"><i class="fa-fw fas fa-code"></i><span> 代码分享</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 学习资料</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Welcome!</span></a><a class="nav-page-title" href="/"><span class="site-name">数字信号处理复习总结</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  Back to Home</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/%E6%B8%B8%E6%88%8F%E6%B5%8B%E8%AF%84/"><i class="fa-fw fas fa-gamepad"></i><span> 游戏测评</span></a></div><div class="menus_item"><a class="site-page" href="/categories/%E4%BB%A3%E7%A0%81%E5%88%86%E4%BA%AB/"><i class="fa-fw fas fa-code"></i><span> 代码分享</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 学习资料</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">数字信号处理复习总结</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2025-12-23T16:00:00.000Z" title="Created 2025-12-24 00:00:00">2025-12-24</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2025-12-24T11:41:24.946Z" title="Updated 2025-12-24 19:41:24">2025-12-24</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%96%99/">学习资料</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="数字信号处理复习总结">数字信号处理复习总结</h1>
+<h1 id="信号的时域分析">01 信号的时域分析</h1>
+<h2 id="一信号的分类">一、信号的分类</h2>
+<ol type="1">
+<li><p>周期信号的 <span
+class="math inline"><em>x</em>(<em>t</em>), <em>y</em>(<em>t</em>)</span>
+的周期为<span class="math inline"><em>T</em><sub>1</sub></span>和<span
+class="math inline"><em>T</em><sub>2</sub></span>，若周期之比 <span
+class="math inline"><em>T</em><sub>1</sub>/<em>T</em><sub>2</sub></span>
+为<strong>有理数</strong>，则其和信号 <span
+class="math inline"><em>x</em>(<em>t</em>) + <em>y</em>(<em>t</em>)</span>
+仍然是周期信号，其周期为 <span
+class="math inline"><em>T</em><sub>1</sub></span> 和 <span
+class="math inline"><em>T</em><sub>2</sub></span>
+的<strong>最小公倍数</strong>。</p></li>
+<li><p>周期信号可能分解为周期信号,
+非周期信号也可能分解为周期信号</p></li>
+<li><p>连续正弦信号<strong>一定</strong>是周期信号,而正弦序列<strong>不一定</strong>是周期序列。两连续周期信号之和<strong>不一定</strong>是周期信号,而两周期序列之和<strong>一定</strong>是周期序列。</p></li>
+<li><p>能量信号与功率信号</p></li>
+</ol>
+<table>
+<colgroup>
+<col style="width: 3%" />
+<col style="width: 48%" />
+<col style="width: 48%" />
+</colgroup>
+<thead>
+<tr>
+<th></th>
+<th>连续信号</th>
+<th>离散信号</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>能量</td>
+<td><span
+class="math inline">$W=\lim\limits_{T\rightarrow\infty}\int_{-T}^{T}|x(t)|^2dt$</span></td>
+<td><span
+class="math inline">$W=\lim\limits_{N\rightarrow\infty}\sum\limits_{n=-N}^{N}|x[n]|^2$</span></td>
+</tr>
+<tr>
+<td>功率</td>
+<td><span
+class="math inline">$P=\lim\limits_{T\rightarrow\infty}\frac{1}{2T}\int_{-T}^{T}|x(t)|^2dt$</span></td>
+<td><span
+class="math inline">$W=\lim\limits_{N\rightarrow\infty}\frac{1}{2N+1}\sum\limits_{n=-N}^{N}|x[n]|^2$</span></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>能量信号：<span
+class="math inline">0 &lt; <em>W</em> &lt; ∞, <em>P</em> = 0</span>。（信号的能量有限）</li>
+<li>功率信号：<span
+class="math inline"><em>W</em> → ∞, 0 &lt; <em>P</em> &lt; ∞</span>。（信号的能量无限，但其功率是有限的）</li>
+<li>直流信号与周期信号都是功率信号</li>
+</ul>
+<ol start="5" type="1">
+<li><p>信号 <span class="math inline"><em>x</em>(<em>t</em>)</span>
+<strong>可以是一个既非功率信号,又非能量信号</strong>。但一个信号<strong>不可能</strong>同时既是功率信号,
+又是能量信号。<strong>周期信号都是功率信号</strong>；非周期信号<strong>可能</strong>是能量信号(<span
+class="math inline"><em>t</em> → ∞, <em>x</em>(<em>t</em>) = 0</span>)也可能是功率信号(<span
+class="math inline"><em>t</em> → ∞, <em>x</em>(<em>t</em>) ≠ 0</span>)。</p></li>
+<li><p>因果信号：当 <span class="math inline"><em>t</em> &lt; 0</span>
+时 <span class="math inline"><em>x</em>(<em>t</em>) = 0</span>，当 <span
+class="math inline"><em>t</em> &gt; 0</span> 时 <span
+class="math inline"><em>x</em>(<em>t</em>) ≠ 0</span>。</p></li>
+</ol>
+<h2 id="二典型的信号">二、典型的信号</h2>
+<ol type="1">
+<li>虚指数信号 <span
+class="math inline"><em>x</em>(<em>t</em>) = <em>A</em><em>e</em><sup><em>j</em><em>ω</em><sub>0</sub><em>t</em></sup></span></li>
+</ol>
+<ul>
+<li>周期性：<span
+class="math inline"><em>x</em>(<em>t</em>) = <em>x</em>(<em>t</em> + <em>T</em><sub>0</sub>) = <em>e</em><sup><em>j</em><em>ω</em><sub>0</sub><em>t</em></sup> = <em>e</em><sup><em>j</em><em>ω</em><sub>0</sub>(<em>t</em> + <em>T</em><sub>0</sub>)</sup></span></li>
+<li>若 <span
+class="math inline"><em>ω</em><sub>0</sub> ≠ 0</span>，基波周期满足
+<span
+class="math inline"><em>ω</em><sub>0</sub><em>T</em><sub>0</sub> = 2<em>π</em><em>k</em></span>，即
+<span class="math inline">$T_0=\frac{2\pi}{|\omega_0|}$</span></li>
+<li><span class="math inline"><em>ω</em><sub>0</sub></span>
+越大，信号震荡速率越高</li>
+</ul>
+<ol start="2" type="1">
+<li>复指数信号 <span
+class="math inline"><em>x</em>(<em>t</em>) = <em>A</em><em>e</em><sup><em>s</em><em>t</em></sup></span></li>
+</ol>
+<ul>
+<li><span class="math inline"><em>A</em></span> 使用极坐标表示：<span
+class="math inline"><em>A</em> = |<em>A</em>|<em>e</em><sup><em>j</em><em>θ</em></sup></span></li>
+<li><span class="math inline"><em>s</em></span>
+使用笛卡尔坐标表示：<span
+class="math inline"><em>s</em> = <em>r</em> + <em>j</em><em>ω</em><sub>0</sub></span>，<span
+class="math inline"><em>x</em>(<em>t</em>) = <em>A</em><em>e</em><sup><em>s</em><em>t</em></sup> = |<em>A</em>|<em>e</em><sup><em>r</em><em>t</em></sup><em>e</em><sup><em>j</em>(<em>ω</em><sub>0</sub><em>t</em> + <em>θ</em>)</sup></span></li>
+<li><span
+class="math inline"><em>x</em>(<em>t</em>) = <em>A</em><em>e</em><sup><em>s</em><em>t</em></sup> = |<em>A</em>|<em>e</em><sup><em>r</em><em>t</em></sup><em>e</em><sup><em>j</em>(<em>ω</em><sub>0</sub><em>t</em> + <em>θ</em>)</sup> = |<em>A</em>|<em>e</em><sup><em>r</em><em>t</em></sup>cos (<em>ω</em><sub>0</sub><em>t</em> + <em>θ</em>) + <em>j</em>|<em>A</em>|<em>e</em><sup><em>r</em><em>t</em></sup>sin (<em>ω</em><sub>0</sub><em>t</em> + <em>θ</em>)</span>，具有指数衰减振幅的正弦信号常称为<strong>阻尼正弦振荡</strong>。</li>
+</ul>
+<ol start="3" type="1">
+<li>抽象信号 <span class="math inline">$Sa(t)=\frac{\sin
+t}{t}$</span></li>
+</ol>
+<ul>
+<li><p><span
+class="math inline">$Sa(0)=\lim\limits_{t\rightarrow0}\frac{\sin
+t}{t}=1,Sa(k\pi)=0$</span></p></li>
+<li><p><span
+class="math inline">$\int_{-\infty}^{\infty}Sa(t)dt=\pi,\int_{0}^{\infty}Sa(t)dt=\frac{\pi}{2}$</span></p></li>
+<li><p><span
+class="math inline">$\int_{0}^{\infty}\frac{\sin(t)dt}{t}=\int_{0}^{\infty}\sin(t)dt\int_{0}^{\infty}e^{-tx}dx=\int_{0}^{\infty}\int_{0}^{\infty}\sin(t)e^{-tx}dtdx$</span></p>
+<p><span
+class="math inline">$I=\int_{0}^{\infty}\sin(t)e^{-tx}dt=-\frac{1}{x}\int_{0}^{\infty}\sin(t)d(e^{-tx})=-\frac{1}{x}\sin(t)e^{-tx}\big|_{t=0}^{\infty}+\frac{1}{x}\int_{0}^{\infty}\cos(t)e^{-tx}dt=\frac{1}{x}\int_{0}^{\infty}\cos(t)e^{-tx}dt$</span></p>
+<p><span
+class="math inline">$=\frac{1}{x}\int_{0}^{\infty}\cos(t)e^{-tx}dt=-\frac{1}{x^2}\int_{0}^{\infty}\cos(t)d(e^{-tx})=-\frac{1}{x^2}\cos(t)e^{-tx}\big|_{t=0}^{\infty}+\frac{1}{x^2}\int_{0}^{\infty}e^{-tx}d(\cos(t))$</span></p>
+<p><span class="math inline">$=\frac{1}{x^2}-\frac{1}{x^2}I$</span></p>
+<p>解得： <span class="math inline">$I=\frac{1}{1+x^2}$</span></p>
+<p><span
+class="math inline">$\int_{0}^{\infty}\frac{\sin(t)}{t}=\int_{0}^{\infty}\int_{0}^{\infty}\sin(t)e^{-tx}dtdx=\int_{0}^{\infty}\frac{1}{1+x^2}dx=\arctan(x)\big|_{x=0}^{\infty}=\frac{1}{2}$</span></p></li>
+<li><p><span class="math inline">$sinc(t)=\frac{\sin
+ct}{ct}$</span></p></li>
+</ul>
+<ol start="4" type="1">
+<li>虚指数序列：<span
+class="math inline"><em>x</em>[<em>n</em>] = <em>e</em><sup><em>j</em><em>ω</em><sub>0</sub><em>n</em></sup></span></li>
+</ol>
+<ul>
+<li><p><span
+class="math inline"><em>e</em><sup><em>j</em><em>ω</em><sub>0</sub><em>n</em></sup></span>
+周期为 <span class="math inline">2<em>π</em></span>，不具有随 <span
+class="math inline"><em>ω</em><sub>0</sub></span>
+增加而增加震荡速率的性质</p></li>
+<li><p>周期性：<span
+class="math inline"><em>x</em>[<em>n</em> + <em>N</em>] = <em>x</em>[<em>n</em>] = <em>e</em><sup><em>j</em><em>ω</em><sub>0</sub><em>n</em></sup> = <em>e</em><sup><em>j</em><em>ω</em><sub>0</sub><em>n</em></sup><em>e</em><sup><em>j</em><em>ω</em><sub>0</sub><em>N</em></sup></span>，满足
+<span
+class="math inline"><em>ω</em><sub>0</sub><em>N</em> = <em>m</em>2<em>π</em>, <em>m</em> ∈ ℕ<sub>+</sub></span></p></li>
+<li><table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>连续信号 <span
+class="math inline"><em>e</em><sup><em>j</em><em>ω</em><sub>0</sub><em>t</em></sup></span></th>
+<th>离散时间序列信号 <span
+class="math inline"><em>e</em><sup><em>j</em><em>ω</em><sub>0</sub><em>n</em></sup></span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="math inline"><em>ω</em><sub>0</sub></span>
+不同,信号不同</td>
+<td><span class="math inline"><em>ω</em><sub>0</sub></span> 相差 <span
+class="math inline">2<em>π</em></span> 整倍数,信号相同</td>
+</tr>
+<tr>
+<td>任何 <span class="math inline"><em>ω</em><sub>0</sub></span>
+信号均为周期信号</td>
+<td>满足 <span
+class="math inline"><em>ω</em><sub>0</sub><em>N</em> = <em>m</em>2<em>π</em>, <em>m</em> ∈ ℕ<sub>+</sub></span>
+才是周期信号</td>
+</tr>
+<tr>
+<td>基波周期：<span class="math inline">$\begin{cases} \omega_0=0, &amp;
+无定义 \\ \omega_0\ne0, &amp;
+T_0=\frac{2\pi}{|\omega_0|}  \end{cases}$</span></td>
+<td>基波周期：<span class="math inline">$\begin{cases} \omega_0=0, &amp;
+无定义 \\ \omega_0\ne0, &amp; T_0=\frac{2\pi
+m}{|\omega_0|}  \end{cases}$</span></td>
+</tr>
+</tbody>
+</table></li>
+</ul>
+<ol start="5" type="1">
+<li>单位脉冲序列：<span class="math inline">$\delta[n]=\begin{cases} 1,
+&amp;n=0\\ 0, &amp;n\ne 0\end{cases}$</span></li>
+</ol>
+<ul>
+<li><span
+class="math inline"><em>x</em>[<em>n</em>]<em>δ</em>[<em>n</em>] = <em>x</em>[0]<em>δ</em>[<em>n</em>], <em>x</em>[<em>n</em>]<em>δ</em>[<em>n</em> − <em>n</em><sub>0</sub>] = <em>x</em>[<em>n</em><sub>0</sub>]<em>δ</em>[<em>n</em> − <em>n</em><sub>0</sub>]</span></li>
+<li>使用单位脉冲表示任意离散时间信号</li>
+</ul>
+<ol start="6" type="1">
+<li>单位脉冲序列：<span class="math inline">$u[n]=\begin{cases} 1,
+&amp;n\ge0\\ 0, &amp;n&lt; 0\end{cases}$</span></li>
+</ol>
+<ul>
+<li><span class="math inline"><em>u</em>[<em>n</em>]</span>
+可看作延时脉冲的叠加：<span
+class="math inline">$u[n]=\sum\limits_{k=0}^{\infty}\delta[n-k]$</span></li>
+<li>单位阶跃序列和单位脉冲序列的相互表示：<span
+class="math inline">$\delta[n]=u[n]-u[n-1],u[n]=\sum\limits_{k=-\infty}^{n}\delta[k]$</span></li>
+</ul>
+<ol start="7" type="1">
+<li>矩形序列：<span class="math inline">$r[n]=\begin{cases} 1, &amp;0\le
+n\le N-1\\ 0,
+&amp;o.w.\end{cases},r[n]=u[n]-u[n-N]=\sum\limits_{m=0}^{N-1}\delta[n-m]$</span></li>
+<li>斜变序列：<span
+class="math inline">$x[n]=nu[n]=\sum\limits_{k=0}^{\infty}k\delta[n-k]$</span></li>
+<li>奇异信号：信号本身或其导数具有不连续点(跳变)，例如单位斜变信号 <span
+class="math inline">$r(t)=\begin{cases}t,&amp;t\ge0\\0,&amp;t&lt;0\end{cases}$</span></li>
+<li>单位阶跃信号：<span
+class="math inline">$u(t)==\begin{cases}1,&amp;t&gt;0\\0,&amp;t&lt;0\end{cases}$</span></li>
+<li>冲激信号 <span
+class="math inline"><em>δ</em>(<em>t</em>)</span></li>
+</ol>
+<ul>
+<li>冲激信号的狄拉克定义：<span
+class="math inline"><em>δ</em>(<em>t</em>) = 0(<em>t</em> ≠ 0); ∫<sub>∞</sub><sup>∞</sup><em>δ</em>(<em>t</em>)<em>d</em><em>t</em> = 1</span></li>
+<li>抽样（筛选）特性：<span
+class="math inline"><em>x</em>(<em>t</em>)<em>δ</em>(<em>t</em> − <em>t</em><sub>0</sub>) = <em>x</em>(<em>t</em><sub>0</sub>)<em>δ</em>(<em>t</em> − <em>t</em><sub>0</sub>)</span></li>
+<li><span
+class="math inline">∫<sub>−∞</sub><sup>+∞</sup><em>x</em>(<em>t</em>)<em>δ</em>(<em>t</em> − <em>t</em><sub>0</sub>)<em>d</em><em>t</em> = ∫<sub>−∞</sub><sup>+∞</sup><em>x</em>(<em>t</em><sub>0</sub>)<em>δ</em>(<em>t</em> − <em>t</em><sub>0</sub>)<em>d</em><em>t</em> = <em>x</em>(<em>t</em><sub>0</sub>)∫<sub>−∞</sub><sup>+∞</sup><em>δ</em>(<em>t</em> − <em>t</em><sub>0</sub>)<em>d</em><em>t</em> = <em>x</em>(<em>t</em><sub>0</sub>)</span></li>
+<li><span
+class="math inline"><em>x</em>(<em>t</em>) = ∫<sub>−∞</sub><sup>+∞</sup><em>x</em>(<em>τ</em>)<em>δ</em>(<em>τ</em> − <em>t</em>)<em>d</em><em>τ</em> = ∫<sub>−∞</sub><sup>+∞</sup><em>x</em>(<em>τ</em>)<em>δ</em>(<em>t</em> − <em>τ</em>)<em>d</em><em>τ</em> = <em>x</em>(<em>t</em>) * <em>δ</em>(<em>t</em>)</span></li>
+<li><span class="math inline">$\delta(\alpha
+t)=\frac{1}{|\alpha|}\delta(t)(\alpha\ne0)$</span>，<span
+class="math inline"><em>α</em> = −1</span> 有 <span
+class="math inline"><em>δ</em>(−<em>t</em>) = <em>δ</em>(<em>t</em>)</span>，因此
+<span class="math inline"><em>δ</em>(<em>t</em>)</span>
+为<strong>偶函数</strong></li>
+<li><span
+class="math inline">$\delta(at+b)=\frac{1}{|a|}\delta(t+\frac{b}{a})$</span></li>
+</ul>
+<h2 id="三信号的分解">三、信号的分解</h2>
+<ol type="1">
+<li><p>基于冲激信号进行信号分解：<span
+class="math inline">$x(t)=\int_{-\infty}^{\infty}x(\tau)\delta(t-\tau)d\tau,x[n]=\sum\limits_{k=-\infty}^{\infty}x[k]\delta[n-k]$</span></p></li>
+<li><p>若 <span class="math inline"><em>n</em></span> 个函数 <span
+class="math inline"><em>g</em><sub>1</sub>(<em>t</em>), <em>g</em><sub>2</sub>(<em>t</em>), ..., <em>g</em><sub><em>n</em></sub>(<em>t</em>)</span>
+构成函数集，且在区间 <span
+class="math inline">(<em>t</em><sub>1</sub>, <em>t</em><sub>2</sub>)</span>
+满足 <span class="math inline">$\begin{cases}
+&lt;g_i(t),g_j(t)&gt;=0,i\ne
+j\\&lt;g_i(t),g_i(t)&gt;=K_i^2\end{cases}$</span>，则函数集为正交函数集。
+重构函数 <span
+class="math inline">$x(t)=\sum\limits_{r=1}^{n}c_rg_r(t),\overline{\epsilon^2}=\frac{1}{t_2-t_1}\int_{t_1}^{t_2}[x(t)-\sum\limits_{r=1}^{n}c_rg_r(t)]^2dt,其中c_r=\frac{\int_{t_1}^{t_2}x(t)g_r(t)dt}{\int_{t_1}^{t_2}g_r^2(t)dt}=\frac{&lt;x(t),g_r(t)&gt;}{K_r^2}$</span></p></li>
+<li><p>若 <span class="math inline"><em>n</em></span> 个函数 <span
+class="math inline"><em>g</em><sub>1</sub>(<em>t</em>), <em>g</em><sub>2</sub>(<em>t</em>), ..., <em>g</em><sub><em>n</em></sub>(<em>t</em>)</span>
+构成正交函数集，不存在 <span class="math inline">ℊ(<em>t</em>)</span>
+满足 <span
+class="math inline">0 &lt; ∫<sub>−∞</sub><sup>∞</sup>ℊ<sup>2</sup>(<em>t</em>)<em>d</em><em>t</em> &lt; ∞</span>
+且 <span
+class="math inline"> &lt; ℊ(<em>t</em>), <em>g</em><sub><em>r</em></sub>(<em>t</em>) &gt;  = 0, <em>r</em> = 1, 2, ..., <em>n</em></span>，则
+<span
+class="math inline"><em>g</em><sub>1</sub>(<em>t</em>), <em>g</em><sub>2</sub>(<em>t</em>), ..., <em>g</em><sub><em>n</em></sub>(<em>t</em>)</span>
+构成完备正交函数集。</p></li>
+<li><p>帕塞瓦尔定理：<span
+class="math inline">$\int_{t_1}^{t_2}x^2(t)dt=\sum_\limits{r}^{\infty}c^2_r$</span>，
+信号所含有的功率恒等于此信号在完备正交函数集中各分量功率的总和。</p></li>
+<li><p>冲激偶信号 <span
+class="math inline">$\delta^{'}(t)=\frac{d\delta(t)}{dt}$</span></p></li>
+</ol>
+<ul>
+<li><p><span
+class="math inline">∫<sub>−∞</sub><sup>∞</sup><em>δ</em><sup>′</sup>(<em>t</em>)<em>d</em><em>t</em> = 0</span></p></li>
+<li><p><span
+class="math inline"><em>δ</em><sup>′</sup>(−<em>t</em>) = −<em>δ</em><sup>′</sup>(<em>t</em>)</span></p></li>
+<li><p>筛选特性：<span
+class="math inline"><em>x</em>(<em>t</em>)<em>δ</em><sup>′</sup>(<em>t</em> − <em>t</em><sub>0</sub>) = <em>x</em>(<em>t</em><sub>0</sub>)<em>δ</em><sup>′</sup>(<em>t</em> − <em>t</em><sub>0</sub>) − <em>x</em><sup>′</sup>(<em>t</em><sub>0</sub>)<em>δ</em>(<em>t</em> − <em>t</em><sub>0</sub>)</span>
+<span
+class="math inline"><em>x</em>(<em>t</em>)<em>δ</em>(<em>t</em> − <em>t</em><sub>0</sub>) = <em>x</em>(<em>t</em><sub>0</sub>)<em>δ</em>(<em>t</em> − <em>t</em><sub>0</sub>)</span>
+两边对 <span class="math inline"><em>t</em></span> 求导可得：<span
+class="math inline"><em>x</em><sup>′</sup>(<em>t</em>)<em>δ</em>(<em>t</em> − <em>t</em><sub>0</sub>) + <em>x</em>(<em>t</em>)<em>δ</em><sup>′</sup>(<em>t</em> − <em>t</em><sub>0</sub>) = <em>x</em>(<em>t</em><sub>0</sub>)<em>δ</em><sup>′</sup>(<em>t</em> − <em>t</em><sub>0</sub>)</span>
+<span
+class="math inline"><em>x</em>(<em>t</em>)<em>δ</em><sup>′</sup>(<em>t</em> − <em>t</em><sub>0</sub>) = <em>x</em>(<em>t</em><sub>0</sub>)<em>δ</em><sup>′</sup>(<em>t</em> − <em>t</em><sub>0</sub>) − <em>x</em><sup>′</sup>(<em>t</em>)<em>δ</em>(<em>t</em> − <em>t</em><sub>0</sub>) = <em>x</em>(<em>t</em><sub>0</sub>)<em>δ</em><sup>′</sup>(<em>t</em> − <em>t</em><sub>0</sub>) − <em>x</em><sup>′</sup>(<em>t</em><sub>0</sub>)<em>δ</em>(<em>t</em> − <em>t</em><sub>0</sub>)</span></p></li>
+<li><p>抽样特性：<span
+class="math inline">∫<sub>−∞</sub><sup>∞</sup><em>x</em>(<em>t</em>)<em>δ</em><sup>′</sup>(<em>t</em> − <em>t</em><sub>0</sub>)<em>d</em><em>t</em> = −<em>x</em><sup>′</sup>(<em>t</em><sub>0</sub>)</span></p>
+<p><span
+class="math inline">∫<sub>−∞</sub><sup>∞</sup><em>x</em>(<em>t</em>)<em>δ</em><sup>′</sup>(<em>t</em> − <em>t</em><sub>0</sub>)<em>d</em><em>t</em> = ∫<sub>−∞</sub><sup>∞</sup>[<em>x</em>(<em>t</em><sub>0</sub>)<em>δ</em><sup>′</sup>(<em>t</em> − <em>t</em><sub>0</sub>) − <em>x</em><sup>′</sup>(<em>t</em><sub>0</sub>)<em>δ</em>(<em>t</em> − <em>t</em><sub>0</sub>)]<em>d</em><em>t</em></span>
+<span
+class="math inline"> = <em>x</em>(<em>t</em><sub>0</sub>)∫<sub>−∞</sub><sup>∞</sup><em>δ</em><sup>′</sup>(<em>t</em> − <em>t</em><sub>0</sub>)<em>d</em><em>t</em> − <em>x</em><sup>′</sup>(<em>t</em><sub>0</sub>)∫<sub>−∞</sub><sup>∞</sup><em>δ</em>(<em>t</em> − <em>t</em><sub>0</sub>)<em>d</em><em>t</em> = 0 − <em>x</em><sup>′</sup>(<em>t</em><sub>0</sub>) = −<em>x</em><sup>′</sup>(<em>t</em><sub>0</sub>)</span></p></li>
+<li><p>展缩特性：<span class="math inline">$\delta^{'}(\alpha
+t)=\frac{1}{\alpha|\alpha|}\delta^{'}(t)(\alpha\ne0),\delta^{'}(at+b)=\frac{1}{a|a|}\delta^{'}(t+\frac{b}{a})(a\ne0)$</span></p></li>
+<li><p><span
+class="math inline"><em>x</em>(<em>t</em>) * <em>δ</em><sup>′</sup>(<em>t</em>) = <em>x</em><sup>′</sup>(<em>t</em>), <em>x</em>(<em>t</em>) * <em>δ</em><sup>′</sup>(<em>t</em> − <em>t</em><sub>0</sub>) = <em>x</em><sup>′</sup>(<em>t</em> − <em>t</em><sub>0</sub>)</span>
+<span
+class="math inline"><em>x</em>(<em>t</em>) * <em>δ</em><sup>′</sup>(<em>t</em> − <em>t</em><sub>0</sub>) = ∫<sub>−∞</sub><sup>+∞</sup><em>x</em>(<em>k</em>)<em>δ</em><sup>′</sup>(<em>t</em> − <em>t</em><sub>0</sub> − <em>k</em>)<em>d</em><em>k</em> = −∫<sub>−∞</sub><sup>+∞</sup><em>x</em>(<em>k</em>)<em>δ</em><sup>′</sup>(<em>k</em> − (<em>t</em> − <em>t</em><sub>0</sub>))<em>d</em><em>k</em></span>
+<span
+class="math inline"> = −∫<sub>−∞</sub><sup>+∞</sup>[<em>x</em>(<em>t</em> − <em>t</em><sub>0</sub>)<em>δ</em><sup>′</sup>(<em>k</em> − (<em>t</em> − <em>t</em><sub>0</sub>)) − <em>x</em><sup>′</sup>(<em>t</em> − <em>t</em><sub>0</sub>)<em>δ</em>(<em>k</em> − (<em>t</em> − <em>t</em><sub>0</sub>))]<em>d</em><em>k</em></span>
+<span
+class="math inline"> = −<em>x</em>(<em>t</em> − <em>t</em><sub>0</sub>)∫<sub>−∞</sub><sup>+∞</sup><em>δ</em><sup>′</sup>(<em>k</em> − (<em>t</em> − <em>t</em><sub>0</sub>)) + <em>x</em><sup>′</sup>(<em>t</em> − <em>t</em><sub>0</sub>)∫<sub>−∞</sub><sup>+∞</sup><em>δ</em>(<em>k</em> − (<em>t</em> − <em>t</em><sub>0</sub>))<em>d</em><em>k</em></span>
+<span
+class="math inline"> = 0 + <em>x</em><sup>′</sup>(<em>t</em> − <em>t</em><sub>0</sub>) = <em>x</em><sup>′</sup>(<em>t</em> − <em>t</em><sub>0</sub>)</span></p></li>
+</ul>
+<h1 id="系统的时域分析">02 系统的时域分析</h1>
+<h2 id="一系统的分类和描述">一、系统的分类和描述</h2>
+<ol type="1">
+<li>系统的输入输出描述：<span class="math inline"><em>N</em></span>
+阶<strong>微分</strong>方程或 <span
+class="math inline"><em>N</em></span> 阶<strong>差分</strong>方程，如
+<span class="math inline">$L\frac{di(t)}{dt}+Ri(t)=x(t)$</span></li>
+<li>系统的状态空间描述包括<strong>连续</strong>时间系统和<strong>离散</strong>时间系统</li>
+<li>连续时间系统</li>
+</ol>
+<ul>
+<li>系统的输入激励与输出响应都必须为<strong>连续</strong>时间信号</li>
+<li>连续时间系统的数学模型是<strong>微分</strong>方程</li>
+</ul>
+<ol start="4" type="1">
+<li>离散时间系统</li>
+</ol>
+<ul>
+<li>系统的输入激励与输出响应都必须为<strong>离散</strong>时间信号</li>
+<li>离散时间系统的数学模型是<strong>差分</strong>方程</li>
+<li>优点：可靠性高，随环境变化小；系统参数精度高；
+利用存储器存储信息；应用更灵活；易消除噪声，易处理低频信号；多维信号处理技术成熟</li>
+</ul>
+<ol start="5" type="1">
+<li>系统互联的方式：串联（级联）、并联和反馈连接</li>
+<li>记忆系统和无记忆系统</li>
+</ol>
+<ul>
+<li>无记忆系统：系统的输出只取决于系统<strong>该时刻</strong>的输入</li>
+<li>恒等系统：<span
+class="math inline"><em>y</em>(<em>t</em>) = <em>x</em>(<em>t</em>); <em>y</em>[<em>n</em>] = <em>x</em>[<em>n</em>]</span></li>
+<li>累加器：<span
+class="math inline">$y[n]=\sum\limits_{k=-\infty}^{n}x[k]$</span></li>
+<li>延时单元：<span
+class="math inline"><em>y</em>[<em>n</em>] = <em>x</em>[<em>n</em> − 1]</span></li>
+</ul>
+<ol start="7" type="1">
+<li>可逆系统</li>
+</ol>
+<ul>
+<li>系统在不同的输入下，导致不同的输出，则系统可逆</li>
+<li>如果一个系统可逆，则存在一个逆系统，系统与逆系统级联，作用等效于恒等系统</li>
+</ul>
+<ol start="8" type="1">
+<li>因果系统</li>
+</ol>
+<ul>
+<li>当且仅当输入信号激励系统时才产生系统输出响应的系统</li>
+<li>如果响应 <span class="math inline"><em>y</em>(<em>t</em>)</span>
+并不依赖于将来的激励如 <span
+class="math inline"><em>x</em>(<em>t</em> + 1)</span>，那么系统就是因果的</li>
+</ul>
+<ol start="9" type="1">
+<li>稳定系统</li>
+</ol>
+<ul>
+<li>稳定系统在微小的输入下的响应不会发散</li>
+<li>指<strong>有界</strong>输入产生<strong>有界</strong>输出的系统</li>
+</ul>
+<ol start="10" type="1">
+<li>线性系统</li>
+</ol>
+<ul>
+<li>如果一个输入信号是由几个<strong>信号加权组成</strong>的，则线性系统的输出是系统对这组信号中<strong>每一个响应的加权和</strong></li>
+<li>齐次性（比例性）：若 <span
+class="math inline"><em>x</em><sub>1</sub>(<em>t</em>) → <em>y</em><sub>1</sub>(<em>t</em>)</span>，则
+<span
+class="math inline"><em>K</em><em>x</em><sub>1</sub>(<em>t</em>) → <em>K</em><em>y</em><sub>1</sub>(<em>t</em>)</span></li>
+<li>可加性（叠加性）：若 <span
+class="math inline"><em>x</em><sub>1</sub>(<em>t</em>) → <em>y</em><sub>1</sub>(<em>t</em>), <em>x</em><sub>2</sub>(<em>t</em>) → <em>y</em><sub>2</sub>(<em>t</em>)</span>，则
+<span
+class="math inline"><em>x</em><sub>1</sub>(<em>t</em>) + <em>x</em><sub>2</sub>(<em>t</em>) → <em>y</em><sub>1</sub>(<em>t</em>) + <em>y</em><sub>2</sub>(<em>t</em>)</span></li>
+<li>连续线性特性：若 <span
+class="math inline"><em>x</em><sub>1</sub>(<em>t</em>) → <em>y</em><sub>1</sub>(<em>t</em>), <em>x</em><sub>2</sub>(<em>t</em>) → <em>y</em><sub>2</sub>(<em>t</em>)</span>，则
+<span class="math inline">$\alpha x_1(t)+\beta x_2(t)\rightarrow \alpha
+y_1(t)+\beta y_2(t)(\alpha,\beta为任意常数)$</span></li>
+<li>离散线性特性：若 <span
+class="math inline"><em>x</em><sub>1</sub>[<em>n</em>] → <em>y</em><sub>1</sub>[<em>n</em>], <em>x</em><sub>2</sub>[<em>n</em>] → <em>y</em><sub>2</sub>[<em>n</em>]</span>，则
+<span class="math inline">$\alpha x_1[n]+\beta x_2[n]\rightarrow \alpha
+y_1[n]+\beta y_2[n](\alpha,\beta为任意常数)$</span></li>
+<li>系统的齐次性和可加性<strong>可以不同时满足</strong> <span
+class="math inline"><em>y</em>(<em>t</em>) = <em>R</em><em>e</em>[<em>x</em>(<em>t</em>)]</span>
+满足可加性，不满足齐次性 <span
+class="math inline">$y(t)=\frac{[x^{'}(t)]^2}{x[t]}$</span>
+满足齐次性，不满足可加性</li>
+</ul>
+<ol start="11" type="1">
+<li>时变系统和时不变系统</li>
+</ol>
+<ul>
+<li>系统的输出响应与输入激励的关系不随输入激励作用于系统的时间起点而改变，就称为时不变系统。否则，就称为时变系统。</li>
+<li>线性时不变系统：Linear Time Invariant (LTI)</li>
+<li>线性时不变系统可由<strong>定常系数</strong>的<strong>线性</strong>微分方程或差分方程描述。</li>
+<li>连续时不变系统：<span
+class="math inline"><em>x</em>(<em>t</em>) → <em>y</em>(<em>t</em>)</span>
+则 <span
+class="math inline"><em>x</em>(<em>t</em> − <em>t</em><sub>0</sub>) → <em>y</em>(<em>t</em> − <em>t</em><sub>0</sub>)</span></li>
+<li>离散时不变系统：<span
+class="math inline"><em>x</em>[<em>n</em>] → <em>y</em>[<em>n</em>]</span>
+则 <span
+class="math inline"><em>x</em>[<em>n</em> − <em>k</em>] → <em>y</em>[<em>n</em> − <em>k</em>]</span></li>
+</ul>
+<h2 id="二卷积">二、卷积</h2>
+<ol type="1">
+<li>线性系统的单位脉冲响应</li>
+</ol>
+<ul>
+<li><span
+class="math inline">$x[n]=\sum\limits_{k=-\infty}^{+\infty}x[k]\delta[n-k]$</span></li>
+<li><span
+class="math inline">$y[n]=\sum\limits_{k=-\infty}^{+\infty}x[k]h_k[n]$</span>，其中
+<span
+class="math inline"><em>h</em><sub><em>k</em></sub>[<em>n</em>]</span>
+为单位脉冲 <span
+class="math inline"><em>δ</em>[<em>n</em> − <em>k</em>]</span>
+的响应</li>
+</ul>
+<ol start="2" type="1">
+<li>卷积和</li>
+</ol>
+<ul>
+<li><p>卷积和定义：<span
+class="math inline">$y[n]=\sum\limits_{k=-\infty}^{+\infty}x[k]h[n-k]$</span></p></li>
+<li><p>符号记为：<span
+class="math inline"><em>y</em>[<em>n</em>] = <em>x</em>[<em>n</em>] * <em>h</em>[<em>n</em>]</span></p></li>
+<li><p>计算 <span
+class="math inline"><em>x</em>[<em>n</em>] = <em>α</em><sup><em>n</em></sup><em>u</em>[<em>n</em>]</span>
+与 <span
+class="math inline"><em>h</em>[<em>n</em>] = <em>β</em><sup><em>n</em></sup></span>
+的卷积和 <span
+class="math inline">$x[n]*h[n]=\alpha^nu[n]*\beta^nu[n]=\sum\limits_{k=-\infty}^{+\infty}\alpha^ku[k]\beta^{n-k}u[n-k]$</span>
+<span
+class="math inline">$=\begin{cases}\sum\limits_{k=0}^{n}\alpha^k\beta^{n-k},&amp;n\ge0\\0,&amp;n&lt;0\end{cases}=\begin{cases}\frac{\beta^{n+1}-\alpha^{n+1}}{\beta-\alpha}u[n],&amp;\alpha\ne\beta\\(n+1)\alpha^nu[n],&amp;\alpha=\beta\end{cases}$</span></p></li>
+<li><p>表格法 设 <span class="math inline"><em>x</em>[<em>n</em>]</span>
+和 <span class="math inline"><em>h</em>[<em>n</em>]</span>
+都是<strong>因果序列</strong>，则有 <span
+class="math inline">$y[n]=x[n]*h[n]=\sum\limits_{k=0}^{n}x[k]h[n-k],n\ge0$</span>
+将 <span class="math inline"><em>h</em>[<em>n</em>]</span>
+的值顺序排成一行，将 <span
+class="math inline"><em>x</em>[<em>n</em>]</span>
+的值顺序排成一列，行与列的交叉点记入相应 <span
+class="math inline"><em>x</em>[<em>n</em>]</span> 与 <span
+class="math inline"><em>h</em>[<em>n</em>]</span> 的乘积：</p>
+<figure>
+<img
+src="C:\Users\SJH\blog\source_posts\数字信号处理\屏幕截图%202025-12-21%20143905.png"
+alt="屏幕截图 2025-12-21 143905" />
+<figcaption aria-hidden="true">屏幕截图 2025-12-21 143905</figcaption>
+</figure>
+<p>如图所示，对角斜线上各数值就是 <span
+class="math inline"><em>x</em>[<em>k</em>]<em>h</em>[<em>n</em> − <em>k</em>]</span>
+的值，对角斜线上各数值的和就是 <span
+class="math inline"><em>y</em>[<em>n</em>]</span> 各项的值。</p></li>
+</ul>
+<p>​ 计算 <span
+class="math inline">$x[n]=\left\{1,2,\overset{\downarrow}{0},3,2\right\}$</span>
+与 <span
+class="math inline">$h[n]=\left\{1,\overset{\downarrow}{4},2,3\right\}$</span>
+的卷积和 ​
+利用卷积和的起点坐标等于待卷积两序列起点之和，确定卷积和的<strong>原点</strong>
+<img
+src="C:\Users\SJH\blog\source_posts\数字信号处理\屏幕截图%202025-12-21%20144446.png"
+alt="屏幕截图 2025-12-21 144446" /></p>
+<p>​ <span
+class="math inline">$y[n]=\left\{1,6,10,\overset{\downarrow}{10},20,14,13,6\right\}$</span></p>
+<ul>
+<li><p>矩阵法，将离散卷积和表示为<strong>矩阵乘法</strong></p>
+<p>计算 <span
+class="math inline">$x[n]=\left\{1,2,\overset{\downarrow}{0},3,2\right\}$</span>
+与 <span
+class="math inline">$h[n]=\left\{1,\overset{\downarrow}{4},2,3\right\}$</span>
+的卷积和 $$</p>
+<p>=</p>
+<p>$$</p></li>
+</ul>
+<p>​ <span
+class="math inline">$y[n]=\left\{1,6,10,\overset{\downarrow}{10},20,14,13,6\right\}$</span></p>
+<ol start="3" type="1">
+<li>卷积积分</li>
+</ol>
+<ul>
+<li><span
+class="math inline"><em>y</em>(<em>t</em>) = <em>x</em>(<em>t</em>) * <em>h</em>(<em>t</em>) = ∫<sub>−∞</sub><sup>∞</sup><em>x</em>(<em>τ</em>)<em>h</em>(<em>t</em> − <em>τ</em>)<em>d</em><em>τ</em></span></li>
+<li>已知 <span
+class="math inline"><em>x</em>(<em>t</em>) = <em>e</em><sup>−<em>t</em></sup><em>u</em>(<em>t</em>), <em>h</em>(<em>t</em>) = <em>u</em>(<em>t</em>)</span>，计算
+<span
+class="math inline"><em>x</em>(<em>t</em>) * <em>h</em>(<em>t</em>)</span>
+<span
+class="math inline"><em>x</em>(<em>t</em>) * <em>h</em>(<em>t</em>) = ∫<sub>−∞</sub><sup>∞</sup><em>e</em><sup>−<em>τ</em></sup><em>u</em>(<em>τ</em>)<em>u</em>(<em>t</em> − <em>τ</em>)<em>d</em><em>τ</em> = ∫<sub>0</sub><sup><em>t</em></sup><em>e</em><sup>−<em>τ</em></sup><em>d</em><em>τ</em> = −<em>e</em><sup>−<em>τ</em></sup>|<sub><em>τ</em> = 0</sub><sup><em>t</em></sup> = 1 − <em>e</em><sup>−<em>t</em></sup></span></li>
+</ul>
+<h2
+id="三卷积的性质和特殊信号的卷积">三、卷积的性质和特殊信号的卷积</h2>
+<ol type="1">
+<li>卷积的性质</li>
+</ol>
+<ul>
+<li><p>交换律：<span
+class="math inline"><em>x</em><sub>1</sub>(<em>t</em>) * <em>x</em><sub>2</sub>(<em>t</em>) = <em>x</em><sub>2</sub>(<em>t</em>) * <em>x</em><sub>1</sub>(<em>t</em>)</span></p></li>
+<li><p>分配律：<span
+class="math inline">[<em>x</em><sub>1</sub>(<em>t</em>) + <em>x</em><sub>2</sub>(<em>t</em>)] * <em>x</em><sub>3</sub>(<em>t</em>) = <em>x</em><sub>1</sub>(<em>t</em>) * <em>x</em><sub>3</sub>(<em>t</em>) + <em>x</em><sub>2</sub>(<em>t</em>) * <em>x</em><sub>3</sub>(<em>t</em>)</span></p></li>
+<li><p>结合律：<span
+class="math inline">[<em>x</em><sub>1</sub>(<em>t</em>) * <em>x</em><sub>2</sub>(<em>t</em>)] * <em>x</em><sub>3</sub>(<em>t</em>) = <em>x</em><sub>1</sub>(<em>t</em>) * [<em>x</em><sub>2</sub>(<em>t</em>) * <em>x</em><sub>3</sub>(<em>t</em>)]</span></p></li>
+<li><p>平移特性：已知 <span
+class="math inline"><em>x</em><sub>1</sub>(<em>t</em>) * <em>x</em><sub>2</sub>(<em>t</em>) = <em>y</em>(<em>t</em>)</span>，则
+<span
+class="math inline"><em>x</em><sub>1</sub>(<em>t</em> − <em>t</em><sub>1</sub>) * <em>x</em><sub>2</sub>(<em>t</em> − <em>t</em><sub>2</sub>) = <em>y</em>(<em>t</em> − <em>t</em><sub>1</sub> − <em>t</em><sub>2</sub>)</span>
+<span
+class="math inline">$x_1(t-t_1)*x_2(t-t_2)=\int_{-\infty}^{\infty}x_1(\tau-t_1)x_2(t-t_2-\tau)d\tau\overset{\tau-t_1=\lambda}{=}\int_{-\infty}^{\infty}x_1(\lambda)x_2(t-t_1-t_2-\lambda)d\lambda=y(t-t_1-t_2)$</span></p></li>
+<li><p>展缩特性：已知 <span
+class="math inline"><em>x</em><sub>1</sub>(<em>t</em>) * <em>x</em><sub>2</sub>(<em>t</em>) = <em>y</em>(<em>t</em>)</span>，则
+<span class="math inline">$x_1(\alpha t)*x_2(\alpha
+t)=\frac{1}{|\alpha|}y(\alpha t)$</span> <span
+class="math inline">$x_1(\alpha t)x_2(\alpha
+t)=\int_{-\infty}^{\infty}x_1(\alpha\tau)x_2(\alpha
+t-\alpha\tau)d\tau\overset{\alpha\tau=\lambda}{=}\frac{1}{|\alpha|}\int_{-\infty}^{\infty}x_1(\lambda)x_2(\alpha
+t-\lambda)d\lambda=\frac{1}{|\alpha|}y(\alpha t)$</span></p></li>
+<li><p>微分特性：<span
+class="math inline">$\frac{d}{dt}[x_1(t)*x_2(t)]=x_1(t)*\frac{d}{dt}x_2(t)=\frac{d}{dt}x_1(t)*x_2(t)$</span></p>
+<p><span
+class="math inline">$((f(\tau)*g(\tau))(t))^{'}=\frac{d}{dt}(\int_{-\infty}^{\infty}f(\tau)g(t-\tau)d\tau)=(f(\tau)*g^{'}(\tau))(t)$</span>
+由 Leibniz 求导法则： <span
+class="math inline">$\frac{d}{dx}(\int_{a(x)}^{b(x)}f(x,t)dt)=f(x,b(x))\cdot\frac{d}{dx}b(x)-f(x,a(x))\cdot\frac{d}{dx}a(x)+\int_{a(x)}^{b(x)}\frac{\partial}{\partial
+x}f(x,t)dt$</span> <span
+class="math inline">$\frac{d}{dt}(\int_{-\infty}^{\infty}f(\tau)g(t-\tau)d\tau)=\int_{-\infty}^{\infty}\frac{\partial}{\partial
+t}(f(\tau)g(t-\tau))d\tau=\int_{-\infty}^{\infty}f(\tau)g^{'}(\tau)d\tau=(f(\tau)*g^{'}(\tau))(t)$</span></p></li>
+<li><p><span
+class="math inline">∫<sub>−∞</sub><sup><em>t</em></sup><em>f</em>(<em>τ</em>)<em>d</em><em>τ</em> = ∫<sub>−∞</sub><sup>∞</sup><em>f</em>(<em>τ</em>)<em>u</em>(<em>t</em> − <em>τ</em>)<em>d</em><em>τ</em> = <em>f</em>(<em>t</em>) * <em>u</em>(<em>t</em>)</span></p></li>
+<li><p>积分特性：<span
+class="math inline">∫<sub>−∞</sub><sup><em>t</em></sup>[<em>x</em><sub>1</sub>(<em>τ</em>) * <em>x</em><sub>2</sub>(<em>τ</em>)]<em>d</em><em>τ</em> = <em>x</em><sub>1</sub>(<em>t</em>) * ∫<sub>−∞</sub><sup><em>t</em></sup>[<em>x</em><sub>2</sub>(<em>τ</em>)]<em>d</em><em>τ</em> = ∫<sub>−∞</sub><sup><em>t</em></sup>[<em>x</em><sub>1</sub>(<em>τ</em>)]<em>d</em><em>τ</em> * <em>x</em><sub>2</sub>(<em>t</em>)</span>
+<span
+class="math inline">∫<sub>−∞</sub><sup><em>t</em></sup>(<em>f</em>(<em>ξ</em>) * <em>g</em>(<em>ξ</em>))(<em>τ</em>)<em>d</em><em>τ</em> = ((∫<sub>−∞</sub><sup><em>τ</em></sup><em>f</em>(<em>ξ</em>)<em>d</em><em>ξ</em>) * <em>g</em>(<em>τ</em>))(<em>t</em>)</span>
+<span
+class="math inline">((∫<sub>−∞</sub><sup><em>τ</em></sup><em>f</em>(<em>ξ</em>)<em>d</em><em>ξ</em>) * <em>g</em>(<em>τ</em>))(<em>t</em>) = ((<em>f</em>(<em>ξ</em>) * <em>u</em>(<em>ξ</em>))(<em>τ</em>) * <em>g</em>(<em>τ</em>))(<em>t</em>) = ((<em>f</em>(<em>ξ</em>) * <em>g</em>(<em>ξ</em>))(<em>τ</em>) * <em>u</em>(<em>τ</em>))(<em>t</em>) = ∫<sub>∞</sub><sup><em>t</em></sup>(<em>f</em>(<em>ξ</em>) * <em>g</em>(<em>ξ</em>))(<em>τ</em>)<em>d</em><em>τ</em></span></p></li>
+<li><p>等效特性：<span
+class="math inline"><em>y</em>(<em>t</em>) = <em>x</em><sub>1</sub>(<em>t</em>) * <em>x</em><sub>2</sub>(<em>t</em>), <em>y</em><sup>(<em>i</em>)</sup>(<em>t</em>) = <em>x</em><sub>1</sub><sup>(<em>j</em>)</sup>(<em>t</em>) * <em>x</em><sub>2</sub><sup>(<em>i</em> − <em>j</em>)</sup>(<em>t</em>)</span></p></li>
+</ul>
+<ol start="2" type="1">
+<li>奇异信号的卷积</li>
+</ol>
+<ul>
+<li><span
+class="math inline"><em>δ</em>(<em>t</em>) * <em>δ</em>(<em>t</em>) = <em>δ</em>(<em>t</em>)</span></li>
+<li><span
+class="math inline"><em>x</em>(<em>t</em>) * <em>δ</em>(<em>t</em> − <em>T</em>) = <em>x</em>(<em>T</em>)</span></li>
+<li><span
+class="math inline"><em>x</em>(<em>t</em>) * <em>δ</em><sup>′</sup>(<em>t</em>) = <em>x</em><sup>′</sup>(<em>t</em>)</span></li>
+<li><span
+class="math inline"><em>u</em>(<em>t</em>) * <em>u</em>(<em>t</em>) = ∫<sub>−∞</sub><sup><em>t</em></sup><em>u</em>(<em>τ</em>)<em>d</em><em>τ</em> = <em>t</em><em>u</em>(<em>t</em>)</span></li>
+<li><span
+class="math inline"><em>x</em>(<em>t</em>) * <em>u</em>(<em>t</em>) = ∫<sub>−∞</sub><sup><em>t</em></sup><em>x</em>(<em>τ</em>)<em>d</em><em>τ</em> = <em>x</em><sup>(−1)</sup>(<em>t</em>)(<em>积</em><em>分</em>)</span>
+<span
+class="math inline"><em>x</em>(<em>t</em>) * <em>δ</em>(<em>t</em>) = <em>x</em>(<em>t</em>)(<em>直</em><em>通</em>)</span>
+<span
+class="math inline"><em>x</em>(<em>t</em>) * <em>δ</em>(<em>t</em> − <em>t</em><sub>0</sub>) = <em>x</em>(<em>t</em><sub>0</sub>)(<em>延</em><em>迟</em>)</span></li>
+<li><span
+class="math inline"><em>x</em><sub>1</sub>(<em>t</em>) * <em>x</em><sub>2</sub>(<em>t</em>) = <em>x</em><sub>1</sub><sup>(−1)</sup>(<em>t</em>) * <em>x</em><sub>2</sub><sup>′</sup>(<em>t</em>) = <em>x</em><sub>1</sub><sup>′</sup>(<em>t</em>) * <em>x</em><sub>2</sub><sup>(−1)</sup>(<em>t</em>) = [<em>x</em><sub>1</sub><sup>′</sup>(<em>t</em>) * <em>x</em><sub>2</sub>(<em>t</em>)]<sup>(−1)</sup></span></li>
+</ul>
+<ol start="3" type="1">
+<li>卷积和的性质</li>
+</ol>
+<ul>
+<li>交换律：<span
+class="math inline"><em>x</em>[<em>n</em>] * <em>h</em>[<em>n</em>] = <em>h</em>[<em>n</em>] * <em>x</em>[<em>n</em>]</span></li>
+<li>结合律：<span
+class="math inline"><em>x</em>[<em>n</em>] * {<em>h</em><sub>1</sub>[<em>n</em>] * <em>h</em><sub>2</sub>[<em>n</em>]} = {<em>x</em>[<em>n</em>] * <em>h</em><sub>1</sub>[<em>n</em>]} * <em>h</em><sub>2</sub>[<em>n</em>]</span></li>
+<li>分配律：<span
+class="math inline"><em>x</em>[<em>n</em>] * {<em>h</em><sub>1</sub>[<em>n</em>] + <em>h</em><sub>2</sub>[<em>n</em>]} = <em>x</em>[<em>n</em>] * <em>h</em><sub>1</sub>[<em>n</em>] + <em>x</em>[<em>n</em>] * <em>h</em><sub>2</sub>[<em>n</em>]</span></li>
+<li>位移特性：<span
+class="math inline"><em>x</em>[<em>n</em>] * <em>δ</em>[<em>n</em> − <em>k</em>] = <em>x</em>[<em>n</em> − <em>k</em>]</span>
+若 <span
+class="math inline"><em>x</em>[<em>n</em>] * <em>h</em>[<em>n</em>] = <em>y</em>[<em>n</em>]</span>，则
+<span
+class="math inline"><em>x</em>[<em>n</em> − <em>k</em>] * <em>h</em>[<em>n</em> − <em>l</em>] = <em>y</em>[<em>n</em> − (<em>k</em> + <em>l</em>)]</span></li>
+<li>差分特性：若 <span
+class="math inline"><em>x</em>[<em>n</em>] * <em>h</em>[<em>n</em>] = <em>y</em>[<em>n</em>]</span>，则
+<span
+class="math inline">∇<em>x</em>[<em>n</em>] * <em>h</em>[<em>n</em>] = <em>x</em>[<em>n</em>] * ∇<em>h</em>[<em>n</em>] = ∇<em>y</em>[<em>n</em>]</span></li>
+<li>求和特性：若 <span
+class="math inline"><em>x</em>[<em>n</em>] * <em>h</em>[<em>n</em>] = <em>y</em>[<em>n</em>]</span>，则
+<span
+class="math inline">$x[n]*\sum\limits_{k=-\infty}^{n}h[k]=(\sum\limits_{k=-\infty}^{n}x[k])*h[n]=\sum\limits_{k=-\infty}^{n}y[k]$</span></li>
+</ul>
+<h2 id="四卷积的应用">四、卷积的应用</h2>
+<ol type="1">
+<li>级联系统的冲激响应等于两个子系统冲激响应的<strong>卷积</strong>：
+<span
+class="math inline"><em>y</em>(<em>t</em>) = <em>x</em>(<em>t</em>) * <em>h</em><sub>1</sub>(<em>t</em>) * <em>h</em><sub>2</sub>(<em>t</em>) = <em>x</em>(<em>t</em>) * (<em>h</em><sub>1</sub>(<em>t</em>) * <em>h</em><sub>2</sub>(<em>t</em>))</span>
+交换两个级联系统的先后连接次序不影响系统总的冲激响应。</li>
+<li>并联系统的冲激响应等于两个子系统冲激响应<strong>之和</strong>：<span
+class="math inline"><em>y</em>(<em>t</em>) = <em>y</em><sub>1</sub>(<em>t</em>) + <em>y</em><sub>2</sub>(<em>t</em>) = <em>x</em>(<em>t</em>) * <em>h</em><sub>1</sub>(<em>t</em>) + <em>x</em>(<em>t</em>) * <em>h</em><sub>2</sub>(<em>t</em>) = <em>x</em>(<em>t</em>) * (<em>h</em><sub>1</sub>(<em>t</em>) + <em>h</em><sub>2</sub>(<em>t</em>))</span></li>
+<li>LTI系统因果的<strong>充分必要</strong>条件</li>
+</ol>
+<ul>
+<li>因果连续时间LTI系统的冲激响应必须满足：<span
+class="math inline"><em>h</em>(<em>t</em>) = 0, <em>t</em> &lt; 0</span></li>
+<li>因果离散时间LTI系统的单位脉冲响应必须满足：<span
+class="math inline"><em>h</em>[<em>n</em>] = 0, <em>n</em> &lt; 0</span></li>
+</ul>
+<ol start="4" type="1">
+<li>LTI系统稳定的<strong>充分必要</strong>条件</li>
+</ol>
+<ul>
+<li>连续时间LTI系统稳定的充分必要条件是：<span
+class="math inline">∫<sub>−∞</sub><sup>∞</sup>|<em>h</em>(<em>τ</em>)|<em>d</em><em>τ</em> &lt; ∞</span></li>
+<li>离散时间LTI系统稳定的充分必要条件是：<span
+class="math inline">$\sum\limits_{k=-\infty}^{\infty}|h[k]|&lt;\infty$</span></li>
+</ul>
+<ol start="5" type="1">
+<li><p>LTI特性与单位冲激响应的关系</p>
+<table>
+<colgroup>
+<col style="width: 7%" />
+<col style="width: 45%" />
+<col style="width: 46%" />
+</colgroup>
+<thead>
+<tr>
+<th>特性</th>
+<th>连续时间系统</th>
+<th>离散时间系统</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>无记忆性</td>
+<td><span
+class="math inline"><em>h</em>(<em>t</em>) = <em>c</em><em>δ</em>(<em>t</em>)</span></td>
+<td><span
+class="math inline"><em>h</em>[<em>n</em>] = <em>c</em><em>δ</em>[<em>n</em>]</span></td>
+</tr>
+<tr>
+<td>因果性</td>
+<td><span
+class="math inline"><em>h</em>(<em>t</em>) = 0, <em>t</em> &lt; 0</span></td>
+<td><span
+class="math inline"><em>h</em>[<em>n</em>] = 0, <em>n</em> &lt; 0</span></td>
+</tr>
+<tr>
+<td>稳定性</td>
+<td><span
+class="math inline">∫<sub>−∞</sub><sup>∞</sup>|<em>h</em>(<em>τ</em>)|<em>d</em><em>τ</em> &lt; ∞</span></td>
+<td><span
+class="math inline">$\sum\limits_{k=-\infty}^{\infty}|h[k]|&lt;\infty$</span></td>
+</tr>
+<tr>
+<td>可逆性</td>
+<td><span
+class="math inline"><em>h</em><sub>0</sub>(<em>t</em>) * <em>h</em><sub>−</sub>(<em>t</em>) = <em>δ</em>(<em>t</em>)</span></td>
+<td><span
+class="math inline"><em>h</em><sub>0</sub>[<em>n</em>] * <em>h</em><sub>−</sub>[<em>n</em>] = <em>δ</em>[<em>n</em>]</span></td>
+</tr>
+<tr>
+<td>时不变性</td>
+<td><span
+class="math inline"><em>δ</em>(<em>t</em> − <em>t</em><sub>0</sub>) → <em>h</em>(<em>t</em> − <em>t</em><sub>0</sub>)</span></td>
+<td><span
+class="math inline"><em>δ</em>[<em>n</em> − <em>n</em><sub>0</sub>] → <em>h</em>[<em>n</em> − <em>n</em><sub>0</sub>]</span></td>
+</tr>
+<tr>
+<td>线性</td>
+<td><span
+class="math inline"><em>α</em><em>δ</em>(<em>t</em>) → <em>α</em><em>h</em>(<em>t</em>)</span></td>
+<td><span
+class="math inline"><em>α</em><em>δ</em>[<em>n</em>] → <em>α</em><em>h</em>[<em>n</em>]</span></td>
+</tr>
+</tbody>
+</table></li>
+<li><p>相关运算：衡量信号之间的相似程度</p></li>
+</ol>
+<ul>
+<li><span
+class="math inline"><em>x</em>(<em>t</em>) ⋆ <em>h</em>(<em>t</em>) = ∫<sub>−∞</sub><sup>∞</sup><em>x</em>(<em>τ</em>)<em>h</em>(<em>τ</em> + <em>t</em>)<em>d</em><em>τ</em> = ∫<sub>−∞</sub><sup>∞</sup><em>x</em>(<em>τ</em> − <em>t</em>)<em>h</em>(<em>τ</em>)<em>d</em><em>τ</em></span></li>
+<li>注意<strong>不满足</strong> <span
+class="math inline"><em>x</em>(<em>t</em>) ⋆ <em>h</em>(<em>t</em>) = <em>h</em>(<em>t</em>) ⋆ <em>x</em>(<em>t</em>)</span></li>
+<li><span
+class="math inline"><em>x</em>(<em>t</em>) ⋆ <em>h</em>(<em>t</em>) = <em>x</em>(−<em>t</em>) * <em>h</em>(<em>t</em>)</span></li>
+</ul>
+<ol start="7" type="1">
+<li>通过内积 <span
+class="math inline"> &lt; <em>f</em>, <em>g</em> &gt;  = ∫<sub>−∞</sub><sup>∞</sup><em>f</em>(<em>t</em>)<em>g</em>(<em>t</em>)<em>d</em><em>t</em></span>
+刻画两个信号的相似性</li>
+</ol>
+<h1 id="系统的时域分析-1">03 系统的时域分析</h1>
+<ol type="1">
+<li><p>对于 <span class="math inline"><em>n</em></span> 时刻的输出仅仅和
+<span class="math inline"><em>n</em></span>
+之前时刻的输入相关的模型，称为MA (Moving Average)模型。 示例：空谷回声
+<span class="math inline"><em>x</em>[<em>n</em>]</span>
+为当前时刻发出的声音，<span
+class="math inline"><em>y</em>[<em>n</em>]</span>
+为当前时刻听到的声音，<span
+class="math inline"><em>b</em><sub><em>k</em></sub></span>
+刻画声音传播过程中的衰减 <span
+class="math inline"><em>y</em>[<em>n</em>] = <em>x</em>[<em>n</em>] + <em>b</em><sub><em>k</em></sub><em>x</em>[<em>n</em> − <em>k</em>]</span></p></li>
+<li><p>对于 <span class="math inline"><em>n</em></span> 时刻的输出仅仅和
+<span class="math inline"><em>n</em></span>
+之前时刻的输出相关的模型，称为AR (Auto Regressive)模型。 示例：银行理财
+当前账户总额为 <span
+class="math inline"><em>y</em>[<em>n</em>]</span>，<span
+class="math inline"><em>a</em><sub><em>i</em></sub></span> 为存款利率
+<span
+class="math inline"><em>y</em>[<em>n</em>] = <em>y</em>[<em>n</em> − 1] + <em>a</em><sub><em>i</em></sub><em>y</em>[<em>n</em> − 1]</span></p></li>
+<li><p>一个线性时不变(LTI)系统可以用常系数微分方程或常系数差分方程描述，但一个常系数微分方程或差分方程描述的系统<strong>不一定是</strong>线性时不变系统。</p></li>
+<li><p>微分方程求解 微分方程 <span
+class="math inline"><em>y</em><sup>(<em>N</em>)</sup>(<em>t</em>) + <em>a</em><sub><em>N</em> − 1</sub><em>y</em><sup>(<em>N</em> − 1)</sup>(<em>t</em>) + ... + <em>a</em><sub>1</sub><em>y</em><sup>′</sup>(<em>t</em>) + <em>a</em><sub>0</sub><em>y</em>(<em>t</em>) = <em>b</em><sub><em>M</em></sub><em>x</em><sup>(<em>M</em>)</sup>(<em>t</em>) + <em>b</em><sub><em>M</em> − 1</sub><sup>(<em>M</em> − 1)</sup>(<em>t</em>) + ... + <em>b</em><sub>1</sub><em>x</em><sup>′</sup>(<em>t</em>) + <em>b</em><sub>0</sub><em>x</em>(<em>t</em>)</span>
+的（完全）解由<strong>齐次解 <span
+class="math inline"><em>y</em><sub><em>h</em></sub>(<em>t</em>)</span></strong>
+和<strong>特解 <span
+class="math inline"><em>y</em><sub><em>p</em></sub>(<em>t</em>)</span></strong>
+构成。</p>
+<p>构建特征方程 <span
+class="math inline"><em>α</em><sup><em>N</em></sup> + <em>a</em><sub><em>N</em> − 1</sub><em>α</em><sup><em>N</em> − 1</sup> + ... + <em>a</em><sub>1</sub><em>α</em> + <em>a</em><sub>0</sub> = 0</span>，求解
+<span class="math inline"><em>N</em></span> 个特征根 <span
+class="math inline"><em>α</em><sub>1</sub>, ..., <em>α</em><sub><em>N</em></sub></span>，分情况讨论</p></li>
+</ol>
+<ul>
+<li><p>特征根各不相同（无重根），齐次解为 <span
+class="math inline">$y_h(t)=A_1e^{\alpha_1t}+A_2e^{\alpha_2t}+...+A_Ne^{\alpha_Nt}=\sum\limits_{i=1}^{N}A_ie^{\alpha_it}$</span></p></li>
+<li><p>若有共轭复根 <span
+class="math inline"><em>α</em><sub>1</sub> = <em>m</em> + <em>j</em><em>n</em>, <em>α</em><sub>2</sub> = <em>m</em> − <em>j</em><em>n</em></span>，则
+<span
+class="math inline"><em>y</em><sub><em>h</em></sub>(<em>t</em>) = <em>A</em><sub>1</sub><em>e</em><sup><em>α</em><sub>1</sub><em>t</em></sup> + <em>A</em><sub>2</sub><em>e</em><sup><em>α</em><sub>2</sub><em>t</em></sup> = <em>e</em><sup><em>m</em><em>t</em></sup>((<em>A</em><sub>1</sub> + <em>A</em><sub>2</sub>)cos <em>n</em><em>t</em> + (<em>A</em><sub>1</sub> − <em>A</em><sub>2</sub>)<em>j</em>sin <em>n</em><em>t</em>)</span>，齐次解为增长或衰减的正弦函数</p></li>
+<li><p>特征根<strong>有重根</strong>，设 <span
+class="math inline"><em>α</em><sub>1</sub></span> 为 <span
+class="math inline"><em>k</em></span> 阶重根，齐次解为 <span
+class="math inline">$y_h(t)=(A_1t^{k-1}+A_2t^{k-2}+...+A_{k-1}t+A_k)e^{\alpha_1
+t}+A_2e^{\alpha_2t}+...+A_{N-k+1}e^{\alpha_{N-k+1}t}=(\sum\limits_{i=1}^{k}A_it^{k-i})e^{\alpha_1
+t}+\sum\limits_{i=2}^{N-k+1}A_ie^{\alpha_i t}$</span></p>
+<p>特解的形式和<strong>激励函数的形式</strong>有关，通过代入激励函数，观察形式，代入微分方程求解待定系数</p></li>
+</ul>
+<p><span class="math display">$$
+\begin{array}{|c|c|}
+\hline
+\text{激励函数 } x(t) &amp; \text{响应函数 } y(t) \text{ 的特解} \\
+\hline
+\text{常数} &amp; B \\
+\hline
+t^p &amp; B_1t^p + B_2t^{p-1} + \dots + B_pt + B_{p+1} \\
+\hline
+e^{\alpha t} &amp; Be^{\alpha t} \\
+\hline
+\cos(\omega t), \sin(\omega t) &amp; B_1\cos(\omega t) + B_2\sin(\omega
+t) \\
+\hline
+t^pe^{\alpha t}\cos(\omega t) &amp; {\begin{aligned}
+&amp; (B_1t^p + B_2t^{p-1} + \dots + B_pt + B_{p+1})e^{\alpha
+t}\cos(\omega t) \\
+&amp; + (D_1t^p + D_2t^{p-1} + \dots + D_pt + D_{p+1})e^{\alpha
+t}\sin(\omega t)
+\end{aligned}} \\
+t^pe^{\alpha t}\sin(\omega t) &amp; \\
+\hline
+\end{array}
+$$</span></p>
+<ul>
+<li><p>若特解和齐次解重复，如均为 <span
+class="math inline"><em>e</em><sup><em>α</em><em>t</em></sup></span>，则特解设为
+<span
+class="math inline"><em>B</em><sub>0</sub><em>t</em><em>e</em><sup><em>α</em><em>t</em></sup></span></p></li>
+<li><p>若对应的特征解为二重根，齐次解为 <span
+class="math inline"><em>t</em><em>e</em><sup><em>α</em><em>t</em></sup></span>，特解为
+<span
+class="math inline"><em>B</em><sub>0</sub><em>t</em><sup>2</sup><em>e</em><sup><em>α</em><em>t</em></sup></span></p></li>
+<li><p>若特解为0时刻加入，则微分方程的解空间为 <span
+class="math inline">0<sub>+</sub> ≤ <em>t</em> &lt; ∞</span></p>
+<p>基于齐次解 <span
+class="math inline"><em>y</em><sub><em>h</em></sub>(<em>t</em>)</span>
+和特解 <span
+class="math inline"><em>y</em><sub><em>p</em></sub>(<em>t</em>)</span>
+构造完全解 <span
+class="math inline"><em>y</em>(<em>t</em>) = <em>y</em><sub><em>h</em></sub>(<em>t</em>) + <em>y</em><sub><em>p</em></sub>(<em>t</em>)</span>，需借助<strong>边界条件</strong>确定齐次解中的待定系数，如
+<span
+class="math inline"><em>y</em>(0), <em>y</em><sup>′</sup>(0)</span>
+的值。</p></li>
+</ul>
+<ol start="5" type="1">
+<li></li>
+</ol>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a href="https://sjh200514.github.io">索心弓</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="https://sjh200514.github.io/2025/12/24/%E6%95%B0%E5%AD%97%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86/">https://sjh200514.github.io/2025/12/24/%E6%95%B0%E5%AD%97%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles on this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless otherwise stated.</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/img/butterfly-icon.png" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">索心弓</div><div class="author-info-description">游戏爱好者</div><div class="site-data"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">1</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">1</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/sjh200514"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">欢迎来到我的主页！</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E5%AD%97%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86%E5%A4%8D%E4%B9%A0%E6%80%BB%E7%BB%93"><span class="toc-number">1.</span> <span class="toc-text">数字信号处理复习总结</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BF%A1%E5%8F%B7%E7%9A%84%E6%97%B6%E5%9F%9F%E5%88%86%E6%9E%90"><span class="toc-number">2.</span> <span class="toc-text">01 信号的时域分析</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E4%BF%A1%E5%8F%B7%E7%9A%84%E5%88%86%E7%B1%BB"><span class="toc-number">2.1.</span> <span class="toc-text">一、信号的分类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E5%85%B8%E5%9E%8B%E7%9A%84%E4%BF%A1%E5%8F%B7"><span class="toc-number">2.2.</span> <span class="toc-text">二、典型的信号</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E4%BF%A1%E5%8F%B7%E7%9A%84%E5%88%86%E8%A7%A3"><span class="toc-number">2.3.</span> <span class="toc-text">三、信号的分解</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%97%B6%E5%9F%9F%E5%88%86%E6%9E%90"><span class="toc-number">3.</span> <span class="toc-text">02 系统的时域分析</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%88%86%E7%B1%BB%E5%92%8C%E6%8F%8F%E8%BF%B0"><span class="toc-number">3.1.</span> <span class="toc-text">一、系统的分类和描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E5%8D%B7%E7%A7%AF"><span class="toc-number">3.2.</span> <span class="toc-text">二、卷积</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E5%8D%B7%E7%A7%AF%E7%9A%84%E6%80%A7%E8%B4%A8%E5%92%8C%E7%89%B9%E6%AE%8A%E4%BF%A1%E5%8F%B7%E7%9A%84%E5%8D%B7%E7%A7%AF"><span class="toc-number">3.3.</span> <span class="toc-text">三、卷积的性质和特殊信号的卷积</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E5%8D%B7%E7%A7%AF%E7%9A%84%E5%BA%94%E7%94%A8"><span class="toc-number">3.4.</span> <span class="toc-text">四、卷积的应用</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%97%B6%E5%9F%9F%E5%88%86%E6%9E%90-1"><span class="toc-number">4.</span> <span class="toc-text">03 系统的时域分析</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Posts</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/24/%E6%95%B0%E5%AD%97%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86/" title="数字信号处理复习总结">数字信号处理复习总结</a><time datetime="2025-12-23T16:00:00.000Z" title="Created 2025-12-24 00:00:00">2025-12-24</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 By 索心弓</span><span class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.3</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Reading Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light and Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle Between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Settings"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back to Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.3"></script><script src="/js/main.js?v=5.5.3"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        loader: {
+          load: [
+            // Four font extension packages (optional)
+            //- '[tex]/bbm',
+            //- '[tex]/bboldx',
+            //- '[tex]/dsfont',
+            '[tex]/mhchem'
+          ],
+          paths: {
+            'mathjax-newcm': '[mathjax]/../@mathjax/mathjax-newcm-font',
+
+            //- // Four font extension packages (optional)
+            //- 'mathjax-bbm-extension': '[mathjax]/../@mathjax/mathjax-bbm-font-extension',
+            //- 'mathjax-bboldx-extension': '[mathjax]/../@mathjax/mathjax-bboldx-font-extension',
+            //- 'mathjax-dsfont-extension': '[mathjax]/../@mathjax/mathjax-dsfont-font-extension',
+            'mathjax-mhchem-extension': '[mathjax]/../@mathjax/mathjax-mhchem-font-extension'
+          }
+        },
+        output: {
+          font: 'mathjax-newcm',
+        },
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'none',
+          packages: {
+            '[+]': [
+              'mhchem'
+            ]
+          }
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          enableMenu: true,
+          menuOptions: {
+            settings: {
+              enrich: false  // Turn off Braille and voice narration text automatic generation
+            }
+          },
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

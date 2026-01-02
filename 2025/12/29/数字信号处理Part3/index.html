@@ -1,9 +1,9 @@
-<!DOCTYPE html><html lang="zh-cn" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>数字信号处理复习总结Part3 | Welcome to my blog!</title><meta name="author" content="索心弓"><meta name="copyright" content="索心弓"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="07 调制、解调和滤波 一、通信系统  基本概念    通信：把发送者拥有的消息传递给接收者   为达到通信的目的  要把信源消息经发送设备转变为适合信道传输的信号，因此需要进行调制、编码、放大等操作。 发送和接收设备还可能包括多路复用、加密、纠错等处理设备 传输媒介也称为信道，可为导线、电缆、光纤等。混入信道的噪声无法避免，在构建通信系统时需要考虑  噪声的影响。      通信系统的分类">
+<!DOCTYPE html><html lang="zh-cn" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>数字信号处理复习总结Part3 | Welcome to my blog!</title><meta name="author" content="索心弓"><meta name="copyright" content="索心弓"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="07 调制、解调和滤波 一、通信系统  基本概念   通信：把发送者拥有的消息传递给接收者 为达到通信的目的  要把信源消息经发送设备转变为适合信道传输的信号，因此需要进行调制、编码、放大等操作。 发送和接收设备还可能包括多路复用、加密、纠错等处理设备 传输媒介也称为信道，可为导线、电缆、光纤等。混入信道的噪声无法避免，在构建通信系统时需要考虑 噪声的影响。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数字信号处理复习总结Part3">
 <meta property="og:url" content="https://sjh200514.github.io/2025/12/29/%E6%95%B0%E5%AD%97%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86Part3/index.html">
 <meta property="og:site_name" content="Welcome to my blog!">
-<meta property="og:description" content="07 调制、解调和滤波 一、通信系统  基本概念    通信：把发送者拥有的消息传递给接收者   为达到通信的目的  要把信源消息经发送设备转变为适合信道传输的信号，因此需要进行调制、编码、放大等操作。 发送和接收设备还可能包括多路复用、加密、纠错等处理设备 传输媒介也称为信道，可为导线、电缆、光纤等。混入信道的噪声无法避免，在构建通信系统时需要考虑  噪声的影响。      通信系统的分类">
+<meta property="og:description" content="07 调制、解调和滤波 一、通信系统  基本概念   通信：把发送者拥有的消息传递给接收者 为达到通信的目的  要把信源消息经发送设备转变为适合信道传输的信号，因此需要进行调制、编码、放大等操作。 发送和接收设备还可能包括多路复用、加密、纠错等处理设备 传输媒介也称为信道，可为导线、电缆、光纤等。混入信道的噪声无法避免，在构建通信系统时需要考虑 噪声的影响。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://sjh200514.github.io/img/2077.jpg">
 <meta property="article:published_time" content="2025-12-29T06:38:25.000Z">
@@ -159,26 +159,23 @@
   isHighlightShrink: true,
   isToc: true,
   pageType: 'post'
-}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div class="bg-animation" id="web_bg" style="background-image: url(/img/background.gif);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/2077.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">24</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">14</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">4</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/%E6%B8%B8%E6%88%8F%E8%AE%B0%E5%BD%95/"><i class="fa-fw fas fa-gamepad"></i><span> 游戏记录</span></a></div><div class="menus_item"><a class="site-page" href="/categories/%E4%BB%A3%E7%A0%81%E5%88%86%E4%BA%AB/"><i class="fa-fw fas fa-code"></i><span> 代码分享</span></a></div><div class="menus_item"><a class="site-page" href="/categories/%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%96%99/"><i class="fa-fw fas fa-book"></i><span> 学习资料</span></a></div><div class="menus_item"><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 歌单</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"></a><a class="nav-page-title" href="/"><span class="site-name">数字信号处理复习总结Part3</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  Back to Home</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/%E6%B8%B8%E6%88%8F%E8%AE%B0%E5%BD%95/"><i class="fa-fw fas fa-gamepad"></i><span> 游戏记录</span></a></div><div class="menus_item"><a class="site-page" href="/categories/%E4%BB%A3%E7%A0%81%E5%88%86%E4%BA%AB/"><i class="fa-fw fas fa-code"></i><span> 代码分享</span></a></div><div class="menus_item"><a class="site-page" href="/categories/%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%96%99/"><i class="fa-fw fas fa-book"></i><span> 学习资料</span></a></div><div class="menus_item"><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 歌单</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">数字信号处理复习总结Part3</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2025-12-29T06:38:25.000Z" title="Created 2025-12-29 14:38:25">2025-12-29</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2025-12-30T07:12:49.788Z" title="Updated 2025-12-30 15:12:49">2025-12-30</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%96%99/">学习资料</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1>07 调制、解调和滤波</h1>
-<h2 id="一、通信系统">一、通信系统</h2>
-<ol>
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div class="bg-animation" id="web_bg" style="background-image: url(/img/background.gif);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/2077.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">24</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">14</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">4</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/%E6%B8%B8%E6%88%8F%E8%AE%B0%E5%BD%95/"><i class="fa-fw fas fa-gamepad"></i><span> 游戏记录</span></a></div><div class="menus_item"><a class="site-page" href="/categories/%E4%BB%A3%E7%A0%81%E5%88%86%E4%BA%AB/"><i class="fa-fw fas fa-code"></i><span> 代码分享</span></a></div><div class="menus_item"><a class="site-page" href="/categories/%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%96%99/"><i class="fa-fw fas fa-book"></i><span> 学习资料</span></a></div><div class="menus_item"><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 歌单</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"></a><a class="nav-page-title" href="/"><span class="site-name">数字信号处理复习总结Part3</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  Back to Home</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/%E6%B8%B8%E6%88%8F%E8%AE%B0%E5%BD%95/"><i class="fa-fw fas fa-gamepad"></i><span> 游戏记录</span></a></div><div class="menus_item"><a class="site-page" href="/categories/%E4%BB%A3%E7%A0%81%E5%88%86%E4%BA%AB/"><i class="fa-fw fas fa-code"></i><span> 代码分享</span></a></div><div class="menus_item"><a class="site-page" href="/categories/%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%96%99/"><i class="fa-fw fas fa-book"></i><span> 学习资料</span></a></div><div class="menus_item"><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 歌单</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">数字信号处理复习总结Part3</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2025-12-29T06:38:25.000Z" title="Created 2025-12-29 14:38:25">2025-12-29</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2025-12-30T07:12:49.788Z" title="Updated 2025-12-30 15:12:49">2025-12-30</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%96%99/">学习资料</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="调制解调和滤波">07 调制、解调和滤波</h1>
+<h2 id="一通信系统">一、通信系统</h2>
+<ol type="1">
 <li>基本概念</li>
 </ol>
 <ul>
-<li>
-<p>通信：把发送者拥有的消息传递给接收者</p>
-</li>
-<li>
-<p>为达到通信的目的</p>
+<li><p>通信：把发送者拥有的消息传递给接收者</p></li>
+<li><p>为达到通信的目的</p>
 <ul>
 <li>要把信源消息经发送设备转变为适合信道传输的信号，因此需要进行<strong>调制、编码、放大</strong>等操作。</li>
 <li>发送和接收设备还可能包括<strong>多路复用、加密、纠错</strong>等处理设备</li>
-<li>传输媒介也称为<strong>信道</strong>，可为导线、电缆、光纤等。混入信道的噪声无法避免，在构建通信系统时需要考虑  噪声的影响。</li>
+<li>传输媒介也称为<strong>信道</strong>，可为导线、电缆、光纤等。混入信道的噪声无法避免，在构建通信系统时需要考虑
+噪声的影响。</li>
 </ul>
-<p><img src="1.png" alt=""></p>
-</li>
+<p><img src="1.png" /></p></li>
 </ul>
-<ol start="2">
+<ol start="2" type="1">
 <li>通信系统的分类</li>
 </ol>
 <ul>
@@ -186,142 +183,174 @@
 <ul>
 <li>有线信道（电缆、光缆等）</li>
 <li>无线信道（长波、中波、短波、微波、光通信）</li>
-</ul>
-</li>
+</ul></li>
 <li>按照频率范围分类，不同波段使用的传输媒质不同：
 <ul>
 <li>如短波使用同轴电缆</li>
 <li>高于 30 MHz 的电波称为微波</li>
 <li>长、中、短波所占频带总和约30MHz，而微波频带约300GHz</li>
-<li>频率范围为 20Hz-20kHz的音频信号，在大气层传输时会剧烈衰减，但高频率信号可在大气层中传播到较远距离</li>
-<li>若音频信号频率为10kHz，直接传输需要7.5km长的天线，在大气层中传输音频，需要将低频信号**“加  载”或“嵌入”**到一个高频信号上，再通过天线向空间辐射。</li>
+<li>频率范围为
+20Hz-20kHz的音频信号，在大气层传输时会剧烈衰减，但高频率信号可在大气层中传播到较远距离</li>
+<li>若音频信号频率为10kHz，直接传输需要7.5km长的天线，在大气层中传输音频，需要将低频信号<strong>“加
+载”或“嵌入”</strong>到一个高频信号上，再通过天线向空间辐射。</li>
 <li>天线长度与辐射电波波长数量级一致(1/4波长以上)时，才能有较好的辐射特性，将信号传递到远方。</li>
 <li>不同通信波段使用不同尺寸的通信天线，<strong>天线尺寸和波长成正比关系</strong></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<p>​	<img src="2.png" alt=""></p>
-<ol start="3">
+<p>​ <img src="2.png" /></p>
+<ol start="3" type="1">
 <li>信道传输</li>
 </ol>
 <ul>
 <li>调制：将低频信号“加载”或“嵌入”到一个高频振荡信号上</li>
 <li>解调：从含有低频信号的高频振荡信号中提取低频信号</li>
 </ul>
-<h2 id="二、信号调制">二、信号调制</h2>
-<ol>
-<li>
-<p>待发送的信号 $x(t)$ 为<strong>调制信号</strong>，用于完成载送信号任务的高频振荡信号 $c(t)$ 为<strong>载波信号</strong>，调制后的高频信号称为已调波。（$x(t)$ <strong>不一定</strong>是低频信号）</p>
-</li>
-<li>
-<p>载波 $c(t)$ 的某个参数（幅度、频率或相位）随 $x(t)$ 做有规律变化：</p>
-<p><img src="3.png" alt=""></p>
-</li>
+<h2 id="二信号调制">二、信号调制</h2>
+<ol type="1">
+<li><p>待发送的信号 <span
+class="math inline"><em>x</em>(<em>t</em>)</span>
+为<strong>调制信号</strong>，用于完成载送信号任务的高频振荡信号 <span
+class="math inline"><em>c</em>(<em>t</em>)</span>
+为<strong>载波信号</strong>，调制后的高频信号称为已调波。（<span
+class="math inline"><em>x</em>(<em>t</em>)</span>
+<strong>不一定</strong>是低频信号）</p></li>
+<li><p>载波 <span class="math inline"><em>c</em>(<em>t</em>)</span>
+的某个参数（幅度、频率或相位）随 <span
+class="math inline"><em>x</em>(<em>t</em>)</span> 做有规律变化：</p>
+<p><img src="3.png" /></p></li>
 </ol>
 <ul>
-<li>
-<p>调制过程中，$A,\omega_c,\varphi,\theta(t)$ 都可以随 $x(t)$变化</p>
-</li>
-<li>
-<p>幅度调制：$A$ 随 $x(t)$ 线性改变，而 $\omega_c,\varphi$ 不变</p>
-</li>
-<li>
-<p>角度调制：$\theta(t)$ 随 $x(t)$ 线性改变，而 $A$ 不变，分为频率调制（FM）和相位调制（PM）</p>
-</li>
+<li><p>调制过程中，<span
+class="math inline"><em>A</em>, <em>ω</em><sub><em>c</em></sub>, <em>φ</em>, <em>θ</em>(<em>t</em>)</span>
+都可以随 <span
+class="math inline"><em>x</em>(<em>t</em>)</span>变化</p></li>
+<li><p>幅度调制：<span class="math inline"><em>A</em></span> 随 <span
+class="math inline"><em>x</em>(<em>t</em>)</span> 线性改变，而 <span
+class="math inline"><em>ω</em><sub><em>c</em></sub>, <em>φ</em></span>
+不变</p></li>
+<li><p>角度调制：<span class="math inline"><em>θ</em>(<em>t</em>)</span>
+随 <span class="math inline"><em>x</em>(<em>t</em>)</span> 线性改变，而
+<span class="math inline"><em>A</em></span>
+不变，分为频率调制（FM）和相位调制（PM）</p></li>
 </ul>
-<ol start="3">
+<ol start="3" type="1">
 <li>正弦载波调幅</li>
 </ol>
 <ul>
-<li>信号调幅，设置载波信号 $c(t)=\cos(\omega_c t)$</li>
-<li>为使幅度 $A$ 随调制信号 $x(t)$ 线性变化（将 $x(t)$ 嵌入 $c(t)$），将二者相乘：$y(t)=x(t)\cdot c(t)=x(t)\cdot\cos(\omega_c t)$<br>
-<img src="4.png" alt=""></li>
-<li>根据调制定理，$Y(j\omega)=\frac{1}{2\pi}[X(j\omega)*\pi[\delta(\omega+\omega_c)+\delta(\omega-\omega_c)]]=\frac{1}{2}[X(j(\omega+\omega_c))+X(j(\omega-\omega_c))]$</li>
-<li>若 $\omega_c&gt;\omega_m$，则两部分频谱不会重叠</li>
+<li>信号调幅，设置载波信号 <span
+class="math inline"><em>c</em>(<em>t</em>) = cos (<em>ω</em><sub><em>c</em></sub><em>t</em>)</span></li>
+<li>为使幅度 <span class="math inline"><em>A</em></span> 随调制信号
+<span class="math inline"><em>x</em>(<em>t</em>)</span> 线性变化（将
+<span class="math inline"><em>x</em>(<em>t</em>)</span> 嵌入 <span
+class="math inline"><em>c</em>(<em>t</em>)</span>），将二者相乘：<span
+class="math inline"><em>y</em>(<em>t</em>) = <em>x</em>(<em>t</em>) ⋅ <em>c</em>(<em>t</em>) = <em>x</em>(<em>t</em>) ⋅ cos (<em>ω</em><sub><em>c</em></sub><em>t</em>)</span>
+<img src="4.png" /></li>
+<li>根据调制定理，<span
+class="math inline">$Y(j\omega)=\frac{1}{2\pi}[X(j\omega)*\pi[\delta(\omega+\omega_c)+\delta(\omega-\omega_c)]]=\frac{1}{2}[X(j(\omega+\omega_c))+X(j(\omega-\omega_c))]$</span></li>
+<li>若 <span
+class="math inline"><em>ω</em><sub><em>c</em></sub> &gt; <em>ω</em><sub><em>m</em></sub></span>，则两部分频谱不会重叠</li>
 <li>调制前后<strong>总能量不变</strong></li>
 </ul>
-<ol start="3">
+<ol start="3" type="1">
 <li>复指数载波调制</li>
 </ol>
 <ul>
-<li>设 $c(t)=e^{j(\omega_c t+\varphi)},\varphi=0$ 进行调幅，可得 $X(j\omega)=\frac{1}{2\pi}[X(j\omega)*2\pi[\delta(\omega-\omega_c)]]=X(j(\omega-\omega_c))$</li>
-<li><strong>不要求</strong> $\omega_c&gt;\omega_m$</li>
+<li>设 <span
+class="math inline"><em>c</em>(<em>t</em>) = <em>e</em><sup><em>j</em>(<em>ω</em><sub><em>c</em></sub><em>t</em> + <em>φ</em>)</sup>, <em>φ</em> = 0</span>
+进行调幅，可得 <span
+class="math inline">$X(j\omega)=\frac{1}{2\pi}[X(j\omega)*2\pi[\delta(\omega-\omega_c)]]=X(j(\omega-\omega_c))$</span></li>
+<li><strong>不要求</strong> <span
+class="math inline"><em>ω</em><sub><em>c</em></sub> &gt; <em>ω</em><sub><em>m</em></sub></span></li>
 <li>可通过滤波法（高通、低通滤波器）分别得到上下边带</li>
 </ul>
-<p>​	<img src="5.png" alt=""></p>
-<ol start="4">
+<p>​ <img src="5.png" /></p>
+<ol start="4" type="1">
 <li>单边带调幅</li>
 </ol>
 <ul>
-<li>
-<p>只发送上边带或者下边带信号，节省能量和带宽</p>
-</li>
-<li>
-<p>采用带通滤波器实现单边带幅度调制</p>
-<p><img src="6.png" alt=""></p>
-</li>
+<li><p>只发送上边带或者下边带信号，节省能量和带宽</p></li>
+<li><p>采用带通滤波器实现单边带幅度调制</p>
+<p><img src="6.png" /></p></li>
 </ul>
-<h2 id="三、信号解调">三、信号解调</h2>
-<ol>
+<h2 id="三信号解调">三、信号解调</h2>
+<ol type="1">
 <li>同步解调</li>
 </ol>
 <ul>
-<li>
-<p>从 $y(t)$ 中恢复出 $x(t)$，即从 $Y(j\omega)$ 中恢复出 $X(j\omega)$</p>
-</li>
-<li>
-<p>$y(t)=x(t)\cdot c(t)=x(t)\cdot\cos(\omega_c t)$，为移回 $X(j\omega)$，用 $\cos(\omega_c t)$ 再次乘以 $x(t)$：</p>
-<p>$r(t)=y(t)\cos\omega_c t=x(t)\cdot\cos^2(\omega_c t)=\frac{1}{2}x(t)+\frac{1}{2}x(t)\cos(2\omega_c t)$</p>
-<p>$R(j\omega)=\frac{1}{2}X(j\omega)+\frac{1}{4}[X(j(\omega+2\omega_c))+X(j(\omega-2\omega_c))]$</p>
-</li>
-<li>
-<p>解调后，原始信号信息保存完好，仅有1/2系数差别</p>
-<p>滤波器带宽需要满足 $\omega_m&lt;B&lt;2\omega_c-\omega_m$</p>
-<p><img src="7.png" alt=""></p>
-</li>
+<li><p>从 <span class="math inline"><em>y</em>(<em>t</em>)</span>
+中恢复出 <span class="math inline"><em>x</em>(<em>t</em>)</span>，即从
+<span class="math inline"><em>Y</em>(<em>j</em><em>ω</em>)</span>
+中恢复出 <span
+class="math inline"><em>X</em>(<em>j</em><em>ω</em>)</span></p></li>
+<li><p><span
+class="math inline"><em>y</em>(<em>t</em>) = <em>x</em>(<em>t</em>) ⋅ <em>c</em>(<em>t</em>) = <em>x</em>(<em>t</em>) ⋅ cos (<em>ω</em><sub><em>c</em></sub><em>t</em>)</span>，为移回
+<span class="math inline"><em>X</em>(<em>j</em><em>ω</em>)</span>，用
+<span
+class="math inline">cos (<em>ω</em><sub><em>c</em></sub><em>t</em>)</span>
+再次乘以 <span class="math inline"><em>x</em>(<em>t</em>)</span>：</p>
+<p><span class="math inline">$r(t)=y(t)\cos\omega_c
+t=x(t)\cdot\cos^2(\omega_c
+t)=\frac{1}{2}x(t)+\frac{1}{2}x(t)\cos(2\omega_c t)$</span></p>
+<p><span
+class="math inline">$R(j\omega)=\frac{1}{2}X(j\omega)+\frac{1}{4}[X(j(\omega+2\omega_c))+X(j(\omega-2\omega_c))]$</span></p></li>
+<li><p>解调后，原始信号信息保存完好，仅有1/2系数差别</p>
+<p>滤波器带宽需要满足 <span
+class="math inline"><em>ω</em><sub><em>m</em></sub> &lt; <em>B</em> &lt; 2<em>ω</em><sub><em>c</em></sub> − <em>ω</em><sub><em>m</em></sub></span></p>
+<p><img src="7.png" /></p></li>
 </ul>
-<ol start="2">
+<ol start="2" type="1">
 <li>收发端相位不等遇到的问题</li>
 </ol>
 <ul>
 <li>若调制与解调端载波<strong>相位不等</strong>，则解调后的信号将会<strong>失真</strong></li>
-<li>$r(t)=x(t)\cos(\omega_c t+\varphi)\cos(\omega_c t+\theta)=\frac{1}{2}x(t)\cos(\varphi-\theta)+\frac{1}{2}x(t)\cos(2\omega_c t+\varphi+\theta)$</li>
-<li>因此 $r(t)=\begin{cases}x(t),&amp;\varphi=\theta\0,&amp;\varphi-\theta=\frac{\pi}{2}\end{cases}$，==相位差为$\frac{\pi}{2}$ 时，无法恢复信号==</li>
+<li><span class="math inline">$r(t)=x(t)\cos(\omega_c
+t+\varphi)\cos(\omega_c
+t+\theta)=\frac{1}{2}x(t)\cos(\varphi-\theta)+\frac{1}{2}x(t)\cos(2\omega_c
+t+\varphi+\theta)$</span></li>
+<li>因此 <span
+class="math inline">$r(t)=\begin{cases}x(t),&amp;\varphi=\theta\\0,&amp;\varphi-\theta=\frac{\pi}{2}\end{cases}$</span>，<mark>相位差为<span
+class="math inline">$\frac{\pi}{2}$</span> 时，无法恢复信号</mark></li>
 </ul>
-<h2 id="四、信道复用">四、信道复用</h2>
-<ol>
+<h2 id="四信道复用">四、信道复用</h2>
+<ol type="1">
 <li>频分复用（Frequency-division multiplexing，FDM）</li>
 </ol>
 <ul>
-<li>
-<p>不同信号占用不同的频带</p>
-<p><img src="8.png" alt=""></p>
-</li>
+<li><p>不同信号占用不同的频带</p>
+<p><img src="8.png" /></p></li>
 </ul>
-<ol start="2">
+<ol start="2" type="1">
 <li>时分复用（Time-Division Multiplexing,TDM）</li>
 </ol>
 <ul>
-<li>
-<p>时分复用的基础是抽样定理</p>
-<p><img src="9.png" alt=""></p>
-</li>
+<li><p>时分复用的基础是抽样定理</p>
+<p><img src="9.png" /></p></li>
 </ul>
-<h1>08 离散信号的傅里叶变换</h1>
-<h2 id="一、离散信号（序列）的傅里叶变换">一、离散信号（序列）的傅里叶变换</h2>
-<ol>
+<h1 id="离散信号的傅里叶变换">08 离散信号的傅里叶变换</h1>
+<h2
+id="一离散信号序列的傅里叶变换">一、离散信号（序列）的傅里叶变换</h2>
+<ol type="1">
 <li>DTFT/IDTFT</li>
 </ol>
 <ul>
-<li>离散时间傅里叶变换（DTFT）: $\mathrm{DTFT}[x[n]]=X(e^{j\omega})=\sum\limits_{n=-\infty}^{\infty}x[n]e^{-jn\omega}$</li>
-<li>逆变换（IDTFT）：$\mathrm{IDTFT}[X(e^{j\omega})]=x[n]=\frac{1}{2\pi}\int_{-\pi}^{\pi}X(e^{j\omega})e^{j\omega n}d\omega$</li>
-<li>$X(e^{j\omega})$ 是复数，是以 $2\pi$ 为周期的<strong>周期函数</strong></li>
+<li>离散时间傅里叶变换（DTFT）: <span
+class="math inline">$\mathrm{DTFT}[x[n]]=X(e^{j\omega})=\sum\limits_{n=-\infty}^{\infty}x[n]e^{-jn\omega}$</span></li>
+<li>逆变换（IDTFT）：<span
+class="math inline">$\mathrm{IDTFT}[X(e^{j\omega})]=x[n]=\frac{1}{2\pi}\int_{-\pi}^{\pi}X(e^{j\omega})e^{j\omega
+n}d\omega$</span></li>
+<li><span
+class="math inline"><em>X</em>(<em>e</em><sup><em>j</em><em>ω</em></sup>)</span>
+是复数，是以 <span class="math inline">2<em>π</em></span>
+为周期的<strong>周期函数</strong></li>
 <li>收敛<strong>充分</strong>条件：能量受限或绝对可和</li>
 </ul>
-<ol start="2">
-<li>
-<p>DTFT的性质</p>
+<ol start="2" type="1">
+<li><p>DTFT的性质</p>
 <table>
+<colgroup>
+<col style="width: 11%" />
+<col style="width: 88%" />
+</colgroup>
 <thead>
 <tr>
 <th>性质</th>
@@ -331,262 +360,313 @@
 <tbody>
 <tr>
 <td>时移</td>
-<td>$\mathrm{DTFT}\left{x[n-k_0]\right}=e^{-j\omega k_0}X(e^{j\omega})$</td>
+<td><span
+class="math inline">DTFT{<em>x</em>[<em>n</em> − <em>k</em><sub>0</sub>]} = <em>e</em><sup>−<em>j</em><em>ω</em><em>k</em><sub>0</sub></sup><em>X</em>(<em>e</em><sup><em>j</em><em>ω</em></sup>)</span></td>
 </tr>
 <tr>
 <td>频移</td>
-<td>$\mathrm{DTFT}\left{e^{j\omega_0n}x[n]\right}=X(e^{j(\omega-\omega_0)})$</td>
+<td><span
+class="math inline">DTFT{<em>e</em><sup><em>j</em><em>ω</em><sub>0</sub><em>n</em></sup><em>x</em>[<em>n</em>]} = <em>X</em>(<em>e</em><sup><em>j</em>(<em>ω</em> − <em>ω</em><sub>0</sub>)</sup>)</span></td>
 </tr>
 <tr>
 <td>能量定理</td>
-<td>$\sum\limits_n</td>
+<td><span
+class="math inline">$\sum\limits_n|x[n]|^2=\frac{1}{2\pi}\int_{-\pi}^{\pi}|X(e^{j\omega})|^2d\omega$</span></td>
 </tr>
 <tr>
 <td>时域卷积</td>
-<td>==$\mathrm{DTFT}\left{x[n]*h[n]\right}=X(e^{j\omega})H(e^{j\omega})$==</td>
+<td><mark><span
+class="math inline">DTFT{<em>x</em>[<em>n</em>] * <em>h</em>[<em>n</em>]} = <em>X</em>(<em>e</em><sup><em>j</em><em>ω</em></sup>)<em>H</em>(<em>e</em><sup><em>j</em><em>ω</em></sup>)</span></mark></td>
 </tr>
 <tr>
 <td>频域卷积</td>
-<td>==$\mathrm{DTFT}\left{x[n]h[n]\right}=\frac{1}{2\pi}\int_{-\pi}^{\pi}X(e^{j\theta})H(e^{j(\omega-\theta)})d\theta$==</td>
+<td><mark><span
+class="math inline">$\mathrm{DTFT}\left\{x[n]h[n]\right\}=\frac{1}{2\pi}\int_{-\pi}^{\pi}X(e^{j\theta})H(e^{j(\omega-\theta)})d\theta$</span></mark></td>
 </tr>
 <tr>
 <td>频域微分</td>
-<td>$\mathrm{DTFT}\left{nx[n]\right}=j\frac{dX(e^{j\omega})}{d\omega}$</td>
+<td><span
+class="math inline">$\mathrm{DTFT}\left\{nx[n]\right\}=j\frac{dX(e^{j\omega})}{d\omega}$</span></td>
 </tr>
 </tbody>
-</table>
-</li>
+</table></li>
 </ol>
-<h2 id="二、离散信号的频域分析">二、离散信号的频域分析</h2>
-<ol>
+<h2 id="二离散信号的频域分析">二、离散信号的频域分析</h2>
+<ol type="1">
 <li>DFS/IDFS</li>
 </ol>
 <ul>
-<li>离散傅里叶级数（DFS）：$\tilde{X}[k]=\mathrm{DFS}[\tilde{x}[n]]=\sum\limits_{n=0}^{N-1}\tilde{x}[n]W_N^{kn},W_N=e^{-j\frac{2\pi}{N}}$</li>
-<li>逆变换（IDFS）：$\tilde{x}[n]=\mathrm{IDFS}(\tilde{X}[k])=\frac{1}{N}\sum\limits_{k=0}^{N-1}\tilde{X}[k]W_N^{-kn}$</li>
-<li>整体记为：$\tilde{x}[n]\overset{DFS}{\longleftrightarrow}\tilde{X}[k]$</li>
+<li>离散傅里叶级数（DFS）：<span
+class="math inline">$\tilde{X}[k]=\mathrm{DFS}[\tilde{x}[n]]=\sum\limits_{n=0}^{N-1}\tilde{x}[n]W_N^{kn},W_N=e^{-j\frac{2\pi}{N}}$</span></li>
+<li>逆变换（IDFS）：<span
+class="math inline">$\tilde{x}[n]=\mathrm{IDFS}(\tilde{X}[k])=\frac{1}{N}\sum\limits_{k=0}^{N-1}\tilde{X}[k]W_N^{-kn}$</span></li>
+<li>整体记为：<span
+class="math inline">$\tilde{x}[n]\overset{DFS}{\longleftrightarrow}\tilde{X}[k]$</span></li>
 </ul>
-<ol start="2">
+<ol start="2" type="1">
 <li>常用离散周期序列的频谱</li>
 </ol>
 <ul>
-<li>周期单位脉冲序列 $\delta_N[n]$：$\tilde{X}[k]=\mathrm{DFS}\left{\tilde{x}[n]\right}=\sum\limits_{n=0}^{N-1}\delta_N[n]W_N^{nk}=1$</li>
-<li>正弦序列，如周期序列 $\tilde{x}[n]=\cos(\pi n/6)$ 的频谱，$N=12$ ：</li>
+<li>周期单位脉冲序列 <span
+class="math inline"><em>δ</em><sub><em>N</em></sub>[<em>n</em>]</span>：<span
+class="math inline">$\tilde{X}[k]=\mathrm{DFS}\left\{\tilde{x}[n]\right\}=\sum\limits_{n=0}^{N-1}\delta_N[n]W_N^{nk}=1$</span></li>
+<li>正弦序列，如周期序列 <span
+class="math inline"><em>x̃</em>[<em>n</em>] = cos (<em>π</em><em>n</em>/6)</span>
+的频谱，<span class="math inline"><em>N</em> = 12</span> ：</li>
 </ul>
-<p>​	$\tilde{x}[n]=\frac{1}{2}e^{j\frac{2\pi}{12}n}+\frac{1}{2}e^{-j\frac{2\pi}{12}n}=\frac{1}{2}W_{12}^{-n}+\frac{1}{2}W_{12}^{n}$</p>
-<p>​	$\tilde{X}[k]=\sum\limits_{n=0}^{11}(\frac{1}{2}W_{12}^{-n}+\frac{1}{2}W_{12}^{n})W_{12}^{nk}=\begin{cases}6,&amp;k=1,11\0,&amp;2\le k\le 10,k=0\end{cases}$</p>
-<ol start="3">
+<p>​ <span
+class="math inline">$\tilde{x}[n]=\frac{1}{2}e^{j\frac{2\pi}{12}n}+\frac{1}{2}e^{-j\frac{2\pi}{12}n}=\frac{1}{2}W_{12}^{-n}+\frac{1}{2}W_{12}^{n}$</span></p>
+<p>​ <span
+class="math inline">$\tilde{X}[k]=\sum\limits_{n=0}^{11}(\frac{1}{2}W_{12}^{-n}+\frac{1}{2}W_{12}^{n})W_{12}^{nk}=\begin{cases}6,&amp;k=1,11\\0,&amp;2\le
+k\le 10,k=0\end{cases}$</span></p>
+<ol start="3" type="1">
 <li>DFS的性质</li>
 </ol>
 <ul>
-<li>
-<p>线性特性：$\mathrm{DFS}\left{a\tilde{x}_1[n]+b\tilde{x}_2[n]\right}=a\mathrm{DFS}\left{\tilde{x}_1[n]\right}+b\mathrm{DFS}\left{\tilde{x}_2[n]\right}$</p>
-</li>
-<li>
-<p>位移特性：</p>
+<li><p>线性特性：<span
+class="math inline">DFS{<em>a</em><em>x̃</em><sub>1</sub>[<em>n</em>] + <em>b</em><em>x̃</em><sub>2</sub>[<em>n</em>]} = <em>a</em>DFS{<em>x̃</em><sub>1</sub>[<em>n</em>]} + <em>b</em>DFS{<em>x̃</em><sub>2</sub>[<em>n</em>]}</span></p></li>
+<li><p>位移特性：</p>
 <ul>
-<li>时域位移：==$\mathrm{DFS}\left{\tilde x[n+m]\right}=W_N^{-km}\tilde X[k]$==</li>
-<li>频域位移：==$\mathrm{DFS}\left{W_N^{ln}\tilde x[n]\right}=X[l+k]$==</li>
-</ul>
-</li>
-<li>
-<p>对称性：$\mathrm{DFS}\left{\tilde {x}^{<em>}[n]\right}=\tilde{X}^{</em>}[-k],\mathrm{DFS}\left{\tilde {x}^{<em>}[-n]\right}=\tilde{X}^{</em>}[k]$</p>
+<li>时域位移：<mark><span
+class="math inline">DFS{<em>x̃</em>[<em>n</em> + <em>m</em>]} = <em>W</em><sub><em>N</em></sub><sup>−<em>k</em><em>m</em></sup><em>X̃</em>[<em>k</em>]</span></mark></li>
+<li>频域位移：<mark><span
+class="math inline">DFS{<em>W</em><sub><em>N</em></sub><sup><em>l</em><em>n</em></sup><em>x̃</em>[<em>n</em>]} = <em>X</em>[<em>l</em> + <em>k</em>]</span></mark></li>
+</ul></li>
+<li><p>对称性：<span
+class="math inline">DFS{<em>x̃</em><sup>*</sup>[<em>n</em>]} = <em>X̃</em><sup>*</sup>[−<em>k</em>], DFS{<em>x̃</em><sup>*</sup>[−<em>n</em>]} = <em>X̃</em><sup>*</sup>[<em>k</em>]</span></p>
 <ul>
-<li>$\tilde{x}[n]$ 为实序列，$\tilde{X}[k]=\tilde{X}^{*}[-k]$</li>
-<li>$\tilde{x}[n]$ 为偶对称实序列，$\tilde{X}[k]$ 为偶对称实序列</li>
-<li>$\tilde{x}[n]$ 为奇对称实序列，$\tilde{X}[k]$ 为奇对称<strong>虚</strong>序列（实部为0）</li>
-<li>偶对称：$\tilde{x}[n]=\tilde{x}[-n]=\tilde{x}[N-n]$</li>
-<li>奇对称：$\tilde{x}[n]=-\tilde{x}[-n]=-\tilde{x}[N-n]$</li>
-</ul>
-</li>
-<li>
-<p>周期卷积定理：</p>
+<li><span class="math inline"><em>x̃</em>[<em>n</em>]</span>
+为实序列，<span
+class="math inline"><em>X̃</em>[<em>k</em>] = <em>X̃</em><sup>*</sup>[−<em>k</em>]</span></li>
+<li><span class="math inline"><em>x̃</em>[<em>n</em>]</span>
+为偶对称实序列，<span class="math inline"><em>X̃</em>[<em>k</em>]</span>
+为偶对称实序列</li>
+<li><span class="math inline"><em>x̃</em>[<em>n</em>]</span>
+为奇对称实序列，<span class="math inline"><em>X̃</em>[<em>k</em>]</span>
+为奇对称<strong>虚</strong>序列（实部为0）</li>
+<li>偶对称：<span
+class="math inline"><em>x̃</em>[<em>n</em>] = <em>x̃</em>[−<em>n</em>] = <em>x̃</em>[<em>N</em> − <em>n</em>]</span></li>
+<li>奇对称：<span
+class="math inline"><em>x̃</em>[<em>n</em>] = −<em>x̃</em>[−<em>n</em>] = −<em>x̃</em>[<em>N</em> − <em>n</em>]</span></li>
+</ul></li>
+<li><p>周期卷积定理：</p>
 <ul>
-<li>
-<p>$\mathrm{DFS}\left{\tilde{x}_1[n]\textcolor{red}{\tilde{<em>}}\tilde{x}_2[n]\right}=\mathrm{DFS}\left{\tilde{x}_1[n]\right}\mathrm{DFS}\left{\tilde{x}_2[n]\right},\mathrm{DFS}\left{\tilde{x}_1[n]\cdot\tilde{x}_2[n]\right}=\frac{1}{N}\mathrm{DFS}\left{\tilde{x}_1[n]\right}\textcolor{red}{\tilde{</em>}}\mathrm{DFS}\left{\tilde{x}_2[n]\right}$</p>
-</li>
-<li>
-<p>周期卷积的结果一般和线性卷积<strong>不同</strong></p>
-</li>
-<li>
-<p>通过对序列补零可使周期卷积的结果和线性卷积的结果相同</p>
-</li>
+<li><p><span
+class="math inline">$\mathrm{DFS}\left\{\tilde{x}_1[n]\textcolor{red}{\tilde{*}}\tilde{x}_2[n]\right\}=\mathrm{DFS}\left\{\tilde{x}_1[n]\right\}\mathrm{DFS}\left\{\tilde{x}_2[n]\right\},\mathrm{DFS}\left\{\tilde{x}_1[n]\cdot\tilde{x}_2[n]\right\}=\frac{1}{N}\mathrm{DFS}\left\{\tilde{x}_1[n]\right\}\textcolor{red}{\tilde{*}}\mathrm{DFS}\left\{\tilde{x}_2[n]\right\}$</span></p></li>
+<li><p>周期卷积的结果一般和线性卷积<strong>不同</strong></p></li>
+<li><p>通过对序列补零可使周期卷积的结果和线性卷积的结果相同</p></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h2 id="三、离散傅里叶变换">三、离散傅里叶变换</h2>
-<ol>
-<li>
-<p>四类信号的傅里叶变换</p>
-<p><img src="10.png" alt=""></p>
-</li>
-<li>
-<p>基于<strong>主值序列</strong>定义长度为 $N$ (非周期)序列的离散傅里叶变换(DFT)：</p>
-</li>
+<h2 id="三离散傅里叶变换">三、离散傅里叶变换</h2>
+<ol type="1">
+<li><p>四类信号的傅里叶变换</p>
+<p><img src="10.png" /></p></li>
+<li><p>基于<strong>主值序列</strong>定义长度为 <span
+class="math inline"><em>N</em></span>
+(非周期)序列的离散傅里叶变换(DFT)：</p></li>
 </ol>
 <ul>
-<li>$\mathrm{DFT}:$ $X[k]=\sum\limits_{n=0}^{N-1}x[n]\cdot e^{-j\frac{2\pi}{N}nk}=\sum\limits_{n=0}^{N-1}x[n]W_N^{nk},k=0,1,\cdots,N-1$</li>
-<li>$\mathrm{IDFT}$：$x[n]=\frac{1}{N}\sum\limits_{k=0}^{N-1}X[k]\cdot e^{j\frac{2\pi}{N}nk}=\frac{1}{N}\sum\limits_{k=0}^{N-1}X[k]W_N^{-nk},n=0,1,\cdots,N-1$</li>
-<li>表示为：$X[k]=\mathrm{DFT}\left{x[n]\right},x[n]=\mathrm{IDFT}\left{X[k]\right}$</li>
+<li><span class="math inline">DFT:</span> <span
+class="math inline">$X[k]=\sum\limits_{n=0}^{N-1}x[n]\cdot
+e^{-j\frac{2\pi}{N}nk}=\sum\limits_{n=0}^{N-1}x[n]W_N^{nk},k=0,1,\cdots,N-1$</span></li>
+<li><span class="math inline">IDFT</span>：<span
+class="math inline">$x[n]=\frac{1}{N}\sum\limits_{k=0}^{N-1}X[k]\cdot
+e^{j\frac{2\pi}{N}nk}=\frac{1}{N}\sum\limits_{k=0}^{N-1}X[k]W_N^{-nk},n=0,1,\cdots,N-1$</span></li>
+<li>表示为：<span
+class="math inline"><em>X</em>[<em>k</em>] = DFT{<em>x</em>[<em>n</em>]}, <em>x</em>[<em>n</em>] = IDFT{<em>X</em>[<em>k</em>]}</span></li>
 </ul>
-<ol start="3">
+<ol start="3" type="1">
 <li>离散傅里叶变换示例</li>
 </ol>
 <ul>
-<li>
-<p>$x[n]=\delta[n]$，$0\le n\le N-1$，求 $N$ 点序列 $x[n]$ 的DFT</p>
-<p>$X[k]=\sum\limits_{n=0}^{N-1}x[n]W_N^{nk}=\sum\limits_{n=0}^{N-1}\delta[n]W_N^{nk}=1,0\le k\le N-1$</p>
-</li>
-<li>
-<p>$x[n]=\cos(\frac{2\pi}{N}n)$，$0\le n\le N-1$，求 $N$ 点序列 $x[n]$ 的DFT</p>
-<p>$x[n]=\cos(\frac{2\pi}{N}n)=\frac{1}{2}(e^{j\frac{2\pi}{N}n}+e^{-j\frac{2\pi}{N}n})=\frac{1}{2}W_N^n+\frac{1}{2}W_N^{-n}$</p>
-<p>$X[k]=\sum\limits_{n=0}^{N-1}x[n]W_N^{nk}=\sum\limits_{n=0}^{N-1}(\frac{1}{2}W_N^n+\frac{1}{2}W_N^{-n})W_N^{nk}=\begin{cases}N/2,&amp;k=1,N-1\0,&amp;其他\end{cases}$</p>
-</li>
+<li><p><span
+class="math inline"><em>x</em>[<em>n</em>] = <em>δ</em>[<em>n</em>]</span>，<span
+class="math inline">0 ≤ <em>n</em> ≤ <em>N</em> − 1</span>，求 <span
+class="math inline"><em>N</em></span> 点序列 <span
+class="math inline"><em>x</em>[<em>n</em>]</span> 的DFT</p>
+<p><span
+class="math inline">$X[k]=\sum\limits_{n=0}^{N-1}x[n]W_N^{nk}=\sum\limits_{n=0}^{N-1}\delta[n]W_N^{nk}=1,0\le
+k\le N-1$</span></p></li>
+<li><p><span
+class="math inline">$x[n]=\cos(\frac{2\pi}{N}n)$</span>，<span
+class="math inline">0 ≤ <em>n</em> ≤ <em>N</em> − 1</span>，求 <span
+class="math inline"><em>N</em></span> 点序列 <span
+class="math inline"><em>x</em>[<em>n</em>]</span> 的DFT</p>
+<p><span
+class="math inline">$x[n]=\cos(\frac{2\pi}{N}n)=\frac{1}{2}(e^{j\frac{2\pi}{N}n}+e^{-j\frac{2\pi}{N}n})=\frac{1}{2}W_N^n+\frac{1}{2}W_N^{-n}$</span></p>
+<p><span
+class="math inline">$X[k]=\sum\limits_{n=0}^{N-1}x[n]W_N^{nk}=\sum\limits_{n=0}^{N-1}(\frac{1}{2}W_N^n+\frac{1}{2}W_N^{-n})W_N^{nk}=\begin{cases}N/2,&amp;k=1,N-1\\0,&amp;其他\end{cases}$</span></p></li>
 </ul>
-<ol start="4">
+<ol start="4" type="1">
 <li>DFT、DFS、DTFT的关系</li>
 </ol>
 <ul>
-<li>
-<p>DFT 可以看成是截取 DFS 的<strong>主值序列</strong>构成的变换对</p>
-<p>$x[n]=\frac{1}{N}\sum\limits_{k=0}^{N-1}X[k]\cdot e^{j\frac{2\pi}{N}nk}=\tilde{x}[n]\cdot\textcolor{red}{R_N[n]}$</p>
-<p>$X[k]=\sum\limits_{n=0}^{N-1}X[k]\cdot e^{-j\frac{2\pi}{N}nk}=\tilde{X}[k]\cdot\textcolor{red}{R_N[k]}$</p>
-<p>其中 $R_N[n]=\begin{cases}1,&amp;0\le n\le N-1\0,&amp;o.w.\end{cases}$</p>
-</li>
-<li>
-<p>$x[n]$ 的DFT $X[k]$ 是其 DTFT $X(e^{j\omega})$在一个周期 $[0,2\pi)$ 的<strong>等间隔抽样</strong></p>
-<p>$X(e^{j\omega})=\mathrm{DTFT}\left{x[n]\right}=\sum\limits_{n=-\infty}^{\infty}x[n]\cdot e^{-jn\omega}$</p>
-<p>$X[k]=\mathrm{DFT}\left{x[n]\right}=\sum\limits_{n=0}^{N-1}x[n]\cdot e^{-j\frac{2\pi}{N}nk}$</p>
-<p>$X[k]=X(e^{j\omega})\big|_{\omega=\frac{2\pi}{N}k},k=0,1,\cdots,N-1$</p>
-</li>
+<li><p>DFT 可以看成是截取 DFS
+的<strong>主值序列</strong>构成的变换对</p>
+<p><span
+class="math inline">$x[n]=\frac{1}{N}\sum\limits_{k=0}^{N-1}X[k]\cdot
+e^{j\frac{2\pi}{N}nk}=\tilde{x}[n]\cdot\textcolor{red}{R_N[n]}$</span></p>
+<p><span class="math inline">$X[k]=\sum\limits_{n=0}^{N-1}X[k]\cdot
+e^{-j\frac{2\pi}{N}nk}=\tilde{X}[k]\cdot\textcolor{red}{R_N[k]}$</span></p>
+<p>其中 <span class="math inline">$R_N[n]=\begin{cases}1,&amp;0\le n\le
+N-1\\0,&amp;o.w.\end{cases}$</span></p></li>
+<li><p><span class="math inline"><em>x</em>[<em>n</em>]</span> 的DFT
+<span class="math inline"><em>X</em>[<em>k</em>]</span> 是其 DTFT <span
+class="math inline"><em>X</em>(<em>e</em><sup><em>j</em><em>ω</em></sup>)</span>在一个周期
+<span class="math inline">[0, 2<em>π</em>)</span>
+的<strong>等间隔抽样</strong></p>
+<p><span
+class="math inline">$X(e^{j\omega})=\mathrm{DTFT}\left\{x[n]\right\}=\sum\limits_{n=-\infty}^{\infty}x[n]\cdot
+e^{-jn\omega}$</span></p>
+<p><span
+class="math inline">$X[k]=\mathrm{DFT}\left\{x[n]\right\}=\sum\limits_{n=0}^{N-1}x[n]\cdot
+e^{-j\frac{2\pi}{N}nk}$</span></p>
+<p><span
+class="math inline">$X[k]=X(e^{j\omega})\big|_{\omega=\frac{2\pi}{N}k},k=0,1,\cdots,N-1$</span></p></li>
 </ul>
-<ol start="5">
+<ol start="5" type="1">
 <li>DFT 的周期性</li>
 </ol>
 <ul>
-<li>$X[k]=\sum\limits_{n=0}^{N-1}x[n]\cdot e^{-j\frac{2\pi}{N}nk},k=0,1,\cdots,N-1$</li>
-<li>$x[n]=\frac{1}{N}\sum\limits_{k=0}^{N-1}X[k]\cdot e^{j\frac{2\pi}{N}nk},n=0,1,\cdots,N-1$</li>
-<li>$X[k]$ 的周期为 $N$，$x[n]$ 的周期也为 $N$：$X[k+N]=X[k],x[n+N]=x[n]$</li>
+<li><span class="math inline">$X[k]=\sum\limits_{n=0}^{N-1}x[n]\cdot
+e^{-j\frac{2\pi}{N}nk},k=0,1,\cdots,N-1$</span></li>
+<li><span
+class="math inline">$x[n]=\frac{1}{N}\sum\limits_{k=0}^{N-1}X[k]\cdot
+e^{j\frac{2\pi}{N}nk},n=0,1,\cdots,N-1$</span></li>
+<li><span class="math inline"><em>X</em>[<em>k</em>]</span> 的周期为
+<span class="math inline"><em>N</em></span>，<span
+class="math inline"><em>x</em>[<em>n</em>]</span> 的周期也为 <span
+class="math inline"><em>N</em></span>：<span
+class="math inline"><em>X</em>[<em>k</em> + <em>N</em>] = <em>X</em>[<em>k</em>], <em>x</em>[<em>n</em> + <em>N</em>] = <em>x</em>[<em>n</em>]</span></li>
 </ul>
-<ol start="6">
+<ol start="6" type="1">
 <li>DFT 的性质</li>
 </ol>
 <ul>
-<li>
-<p>线性特性：需将较短序列<strong>补零</strong>后，再按长序列的点数做DFT</p>
-<p>$\mathrm{DFT}\left{ax_1[n]+bx_2[n]\right}=a\mathrm{DFT}\left{x_1[n]\right}+b\mathrm{DFS}\left{x_2[n]\right}$</p>
-</li>
-<li>
-<p>时域的循环位移对应频域的相移：</p>
-<p>$\mathrm{DFT}\left{x[(n+m)_N]\right}=W_N^{-mk}X[k],\mathrm{DFT}\left{x[(n-m)_N]\right}=W_N^{mk}X[k]$</p>
-</li>
-<li>
-<p>时域的相移对应频域的循环位移：</p>
-<p>$\mathrm{DFT}\left{W_N^{ln}x[n]\right}=X[(k+l)_N],\mathrm{DFT}\left{W_N^{-ln}x[n]\right}=X[(k-l)_N]$</p>
-</li>
-<li>
-<p>序列的<strong>循环卷积</strong>：==$x_1[n]\circledast x_2[n]=\sum\limits_{k=0}^{N-1}x_1[(k)_N]x_2[(n-k)_N]R_N[n]$==</p>
-</li>
-<li>
-<p>时域卷积定理：时域的<strong>循环卷积</strong>对应频域的乘积</p>
-<p>$\mathrm{DFT}\left{x_1[n]\circledast x_2[n]\right}=X_1[k]\cdot X_2[k]$</p>
-</li>
-<li>
-<p>频域卷积定理：时域的乘积对应频域的<strong>循环卷积</strong></p>
-<p>$\mathrm{DFT}\left{x_1[n]\cdot x_2[n]\right}=\frac{1}{N}X_1[k]\circledast X_2[k]$</p>
-</li>
+<li><p>线性特性：需将较短序列<strong>补零</strong>后，再按长序列的点数做DFT</p>
+<p><span
+class="math inline">DFT{<em>a</em><em>x</em><sub>1</sub>[<em>n</em>] + <em>b</em><em>x</em><sub>2</sub>[<em>n</em>]} = <em>a</em>DFT{<em>x</em><sub>1</sub>[<em>n</em>]} + <em>b</em>DFS{<em>x</em><sub>2</sub>[<em>n</em>]}</span></p></li>
+<li><p>时域的循环位移对应频域的相移：</p>
+<p><span
+class="math inline">DFT{<em>x</em>[(<em>n</em> + <em>m</em>)<sub><em>N</em></sub>]} = <em>W</em><sub><em>N</em></sub><sup>−<em>m</em><em>k</em></sup><em>X</em>[<em>k</em>], DFT{<em>x</em>[(<em>n</em> − <em>m</em>)<sub><em>N</em></sub>]} = <em>W</em><sub><em>N</em></sub><sup><em>m</em><em>k</em></sup><em>X</em>[<em>k</em>]</span></p></li>
+<li><p>时域的相移对应频域的循环位移：</p>
+<p><span
+class="math inline">DFT{<em>W</em><sub><em>N</em></sub><sup><em>l</em><em>n</em></sup><em>x</em>[<em>n</em>]} = <em>X</em>[(<em>k</em> + <em>l</em>)<sub><em>N</em></sub>], DFT{<em>W</em><sub><em>N</em></sub><sup>−<em>l</em><em>n</em></sup><em>x</em>[<em>n</em>]} = <em>X</em>[(<em>k</em> − <em>l</em>)<sub><em>N</em></sub>]</span></p></li>
+<li><p>序列的<strong>循环卷积</strong>：<mark><span
+class="math inline">$x_1[n]\circledast
+x_2[n]=\sum\limits_{k=0}^{N-1}x_1[(k)_N]x_2[(n-k)_N]R_N[n]$</span></mark></p></li>
+<li><p>时域卷积定理：时域的<strong>循环卷积</strong>对应频域的乘积</p>
+<p><span
+class="math inline">DFT{<em>x</em><sub>1</sub>[<em>n</em>] ⊛ <em>x</em><sub>2</sub>[<em>n</em>]} = <em>X</em><sub>1</sub>[<em>k</em>] ⋅ <em>X</em><sub>2</sub>[<em>k</em>]</span></p></li>
+<li><p>频域卷积定理：时域的乘积对应频域的<strong>循环卷积</strong></p>
+<p><span class="math inline">$\mathrm{DFT}\left\{x_1[n]\cdot
+x_2[n]\right\}=\frac{1}{N}X_1[k]\circledast X_2[k]$</span></p></li>
 </ul>
-<ol start="7">
+<ol start="7" type="1">
 <li>基于 DFT 的卷积计算</li>
 </ol>
 <ul>
-<li>
-<p>利用 DFT 计算长为 $M,L$ 序列的卷积（输出长度为 $M+L-1$）: $y[n]=\mathrm{IDFT}[X[k]\cdot H[k]]=x[n]*h[n]$</p>
-</li>
-<li>
-<p>对 $x[n],h[n]$ 补零到长度为 $N$,做 $N$ 点DFT</p>
-</li>
-<li>
-<p>在频域做乘积得到 $Y[k]$</p>
-</li>
-<li>
-<p>对 $Y[k]$ 做 IDFT</p>
-<p><img src="11.png" alt=""></p>
-</li>
+<li><p>利用 DFT 计算长为 <span
+class="math inline"><em>M</em>, <em>L</em></span> 序列的卷积（输出长度为
+<span class="math inline"><em>M</em> + <em>L</em> − 1</span>）: <span
+class="math inline"><em>y</em>[<em>n</em>] = IDFT[<em>X</em>[<em>k</em>] ⋅ <em>H</em>[<em>k</em>]] = <em>x</em>[<em>n</em>] * <em>h</em>[<em>n</em>]</span></p></li>
+<li><p>对 <span
+class="math inline"><em>x</em>[<em>n</em>], <em>h</em>[<em>n</em>]</span>
+补零到长度为 <span class="math inline"><em>N</em></span>,做 <span
+class="math inline"><em>N</em></span> 点DFT</p></li>
+<li><p>在频域做乘积得到 <span
+class="math inline"><em>Y</em>[<em>k</em>]</span></p></li>
+<li><p>对 <span class="math inline"><em>Y</em>[<em>k</em>]</span> 做
+IDFT</p>
+<p><img src="11.png" /></p></li>
 </ul>
-<h2 id="四、快速傅里叶变换">四、快速傅里叶变换</h2>
-<ol>
+<h2 id="四快速傅里叶变换">四、快速傅里叶变换</h2>
+<ol type="1">
 <li>离散傅里叶变换的复杂度</li>
 </ol>
 <ul>
-<li>DFT 和 IDFT 有<strong>相同</strong>的时间复杂度，且只包含加法和乘法</li>
-<li>$N$ 点序列 DFT 的计算复杂度：==复数加法 $N(N-1)$；复数乘法 $N^2$==</li>
+<li>DFT 和 IDFT
+有<strong>相同</strong>的时间复杂度，且只包含加法和乘法</li>
+<li><span class="math inline"><em>N</em></span> 点序列 DFT
+的计算复杂度：<mark>复数加法 <span
+class="math inline"><em>N</em>(<em>N</em> − 1)</span>；复数乘法 <span
+class="math inline"><em>N</em><sup>2</sup></span></mark></li>
 </ul>
-<ol start="2">
+<ol start="2" type="1">
 <li>降低 DFT 计算量的思路</li>
 </ol>
 <ul>
 <li>将长序列DFT分解为短序列的DFT</li>
-<li>利用旋转因子 $W_N^{nk}$ 的周期性、对称性、可约性和特殊值：
+<li>利用旋转因子 <span
+class="math inline"><em>W</em><sub><em>N</em></sub><sup><em>n</em><em>k</em></sup></span>
+的周期性、对称性、可约性和特殊值：
 <ul>
-<li>周期性：$W_N^{nk}=W_N^{(n+N)k}$</li>
-<li>对称性：$(W_N^{nk})^{*}=W_N^{-nk}=W_N^{(N-n)k}$</li>
-<li>可约性：$W_N^{nk}=W_{mN}^{mnk}=W_{N/m}^{nk/m},N/m为整数$</li>
-<li>特殊值：$W_N^{0}=1;W_{N}^{\frac{N}{2}}=-1;W_{N}^{\frac{N}{4}}=-j;W_{N}^{k+\frac{N}{2}}=-W_N^k$</li>
+<li>周期性：<span
+class="math inline"><em>W</em><sub><em>N</em></sub><sup><em>n</em><em>k</em></sup> = <em>W</em><sub><em>N</em></sub><sup>(<em>n</em> + <em>N</em>)<em>k</em></sup></span></li>
+<li>对称性：<span
+class="math inline">(<em>W</em><sub><em>N</em></sub><sup><em>n</em><em>k</em></sup>)<sup>*</sup> = <em>W</em><sub><em>N</em></sub><sup>−<em>n</em><em>k</em></sup> = <em>W</em><sub><em>N</em></sub><sup>(<em>N</em> − <em>n</em>)<em>k</em></sup></span></li>
+<li>可约性：<span
+class="math inline"><em>W</em><sub><em>N</em></sub><sup><em>n</em><em>k</em></sup> = <em>W</em><sub><em>m</em><em>N</em></sub><sup><em>m</em><em>n</em><em>k</em></sup> = <em>W</em><sub><em>N</em>/<em>m</em></sub><sup><em>n</em><em>k</em>/<em>m</em></sup>, <em>N</em>/<em>m</em><em>为</em><em>整</em><em>数</em></span></li>
+<li>特殊值：<span
+class="math inline">$W_N^{0}=1;W_{N}^{\frac{N}{2}}=-1;W_{N}^{\frac{N}{4}}=-j;W_{N}^{k+\frac{N}{2}}=-W_N^k$</span></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<ol start="3">
+<ol start="3" type="1">
 <li>FFT算法：将时域序列逐次分解为一组<strong>子序列</strong>，利用旋转因子的特性，由<strong>子序列</strong>的DFT来实现整个序列的DFT</li>
 </ol>
 <ul>
-<li>
-<p>基2时间抽取FFT算法：$x[n]\rightarrow\begin{cases}x[2r]\x[2r+1]\end{cases}\space\space r=0,1,\cdots,\frac{N}{2}-1$</p>
-</li>
-<li>
-<p>基2频率抽取FFT算法：$X[k]\rightarrow\begin{cases}X[2m]\X[2m+1]\end{cases}\space\space m=0,1,\cdots,\frac{N}{2}-1$</p>
-</li>
-<li>
-<p>基2时间抽取FFT算法推导：</p>
-<p><img src="12.png" alt=""></p>
-</li>
-<li>
-<p>算法的计算复杂度：==复数乘法次数 $\frac{N}{2}\log_2N$==</p>
-</li>
-<li>
-<p>2点基2时间抽取FFT算法流图：</p>
-<p><img src="13.png" alt=""></p>
-</li>
-<li>
-<p>4点基2时间抽取FFT算法流图：</p>
-<p><img src="14.png" alt=""></p>
-</li>
-<li>
-<p>8点基2时间抽取FFT算法流图：</p>
-<p><img src="15.png" alt=""></p>
-<p><img src="16.png" alt=""></p>
-</li>
-<li>
-<p>利用FFT实现IFFT：</p>
+<li><p>基2时间抽取FFT算法：<span
+class="math inline">$x[n]\rightarrow\begin{cases}x[2r]\\x[2r+1]\end{cases}\space\space
+r=0,1,\cdots,\frac{N}{2}-1$</span></p></li>
+<li><p>基2频率抽取FFT算法：<span
+class="math inline">$X[k]\rightarrow\begin{cases}X[2m]\\X[2m+1]\end{cases}\space\space
+m=0,1,\cdots,\frac{N}{2}-1$</span></p></li>
+<li><p>基2时间抽取FFT算法推导：</p>
+<p><img src="12.png" /></p></li>
+<li><p>算法的计算复杂度：<mark>复数乘法次数 <span
+class="math inline">$\frac{N}{2}\log_2N$</span></mark></p></li>
+<li><p>2点基2时间抽取FFT算法流图：</p>
+<p><img src="13.png" /></p></li>
+<li><p>4点基2时间抽取FFT算法流图：</p>
+<p><img src="14.png" /></p></li>
+<li><p>8点基2时间抽取FFT算法流图：</p>
+<p><img src="15.png" /></p>
+<p><img src="16.png" /></p></li>
+<li><p>利用FFT实现IFFT：</p>
 <ul>
-<li>(1) 将 $X[m]$取共轭</li>
-<li>(2) 用FFT流图计算 $\mathrm{DFT}\left{X^{*}[m]\right}$</li>
-<li>(3) 对步骤(2)中结果取共轭并除以 $N$: $x[n]=\frac{1}{N}(\sum\limits_{k=0}^{N-1}X^{<em>}[m]W_N^{nk})^{</em>}$</li>
+<li><ol type="1">
+<li>将 <span
+class="math inline"><em>X</em>[<em>m</em>]</span>取共轭</li>
+</ol></li>
+<li><ol start="2" type="1">
+<li>用FFT流图计算 <span
+class="math inline">DFT{<em>X</em><sup>*</sup>[<em>m</em>]}</span></li>
+</ol></li>
+<li><ol start="3" type="1">
+<li>对步骤(2)中结果取共轭并除以 <span
+class="math inline"><em>N</em></span>: <span
+class="math inline">$x[n]=\frac{1}{N}(\sum\limits_{k=0}^{N-1}X^{*}[m]W_N^{nk})^{*}$</span></li>
+</ol></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h2 id="五、二维离散傅里叶变换">五、二维离散傅里叶变换</h2>
-<ol>
+<h2 id="五二维离散傅里叶变换">五、二维离散傅里叶变换</h2>
+<ol type="1">
 <li>二维离散傅里叶变换对的定义：</li>
 </ol>
 <ul>
-<li>$\mathcal{F}[f(x,y)]=F(u,v)=\sum\limits_{x=0}^{M-1}\sum\limits_{y=0}^{N-1}f(x,y)e^{-j2\pi(\frac{ux}{M}+\frac{vy}{N})}$</li>
-<li>$\mathcal{F}^{-1}[F(u,v)]=f(x,y)=\frac{1}{MN}\sum\limits_{u=0}^{M-1}\sum\limits_{v=0}^{N-1}F(u,v)e^{j2\pi(\frac{ux}{M}+\frac{vy}{N})}$</li>
+<li><span
+class="math inline">$\mathcal{F}[f(x,y)]=F(u,v)=\sum\limits_{x=0}^{M-1}\sum\limits_{y=0}^{N-1}f(x,y)e^{-j2\pi(\frac{ux}{M}+\frac{vy}{N})}$</span></li>
+<li><span
+class="math inline">$\mathcal{F}^{-1}[F(u,v)]=f(x,y)=\frac{1}{MN}\sum\limits_{u=0}^{M-1}\sum\limits_{v=0}^{N-1}F(u,v)e^{j2\pi(\frac{ux}{M}+\frac{vy}{N})}$</span></li>
 </ul>
-<ol start="2">
+<ol start="2" type="1">
 <li>二维离散傅里叶变换的基本性质：</li>
 </ol>
 <table>
+<colgroup>
+<col style="width: 11%" />
+<col style="width: 88%" />
+</colgroup>
 <thead>
 <tr>
 <th>性质</th>
@@ -596,134 +676,155 @@
 <tbody>
 <tr>
 <td>线性性质</td>
-<td>$af_1(x,y) + bf_2(x,y) \iff aF_1(u,v) + bF_2(u,v) \quad (a,b \text{ 为常数})$</td>
+<td><span
+class="math inline"><em>a</em><em>f</em><sub>1</sub>(<em>x</em>, <em>y</em>) + <em>b</em><em>f</em><sub>2</sub>(<em>x</em>, <em>y</em>) ⇔ <em>a</em><em>F</em><sub>1</sub>(<em>u</em>, <em>v</em>) + <em>b</em><em>F</em><sub>2</sub>(<em>u</em>, <em>v</em>)  (<em>a</em>, <em>b</em>
+为常数)</span></td>
 </tr>
 <tr>
 <td>比例性质</td>
-<td>$f(ax,by) \iff \frac{1}{</td>
+<td><span class="math inline">$f(ax,by) \iff
+\frac{1}{|ab|}F\left(\frac{u}{a},\frac{v}{b}\right) \quad (a,b \text{
+为常数})$</span></td>
 </tr>
 <tr>
 <td>可分离性</td>
-<td>$F(u,v) = \sum\limits_{x=0}^{M-1}\left[\sum\limits_{y=0}^{N-1}f(x,y)e^{-j2\pi\frac{vy}{N}}\right]e^{-j2\pi\frac{ux}{M}}$</td>
+<td><span class="math inline">$F(u,v) =
+\sum\limits_{x=0}^{M-1}\left[\sum\limits_{y=0}^{N-1}f(x,y)e^{-j2\pi\frac{vy}{N}}\right]e^{-j2\pi\frac{ux}{M}}$</span></td>
 </tr>
 <tr>
 <td></td>
-<td>$f(x,y) = \frac{1}{MN}\sum\limits_{u=0}^{M-1}\left[\sum\limits_{v=0}^{N-1}F(u,v)e^{j2\pi\frac{vy}{N}}\right]e^{j2\pi\frac{ux}{M}}$</td>
+<td><span class="math inline">$f(x,y) =
+\frac{1}{MN}\sum\limits_{u=0}^{M-1}\left[\sum\limits_{v=0}^{N-1}F(u,v)e^{j2\pi\frac{vy}{N}}\right]e^{j2\pi\frac{ux}{M}}$</span></td>
 </tr>
 <tr>
 <td>频率位移</td>
-<td>$f(x,y)e^{j2\pi\left(\frac{u_0x}{M}+\frac{v_0y}{N}\right)} \iff F(u-u_0,v-v_0)$</td>
+<td><span
+class="math inline">$f(x,y)e^{j2\pi\left(\frac{u_0x}{M}+\frac{v_0y}{N}\right)}
+\iff F(u-u_0,v-v_0)$</span></td>
 </tr>
 <tr>
 <td>空间位移</td>
-<td>$f(x-x_0,y-y_0) \iff F(u,v)e^{-j2\pi\left(\frac{ux_0}{M}+\frac{vy_0}{N}\right)}$</td>
+<td><span class="math inline">$f(x-x_0,y-y_0) \iff
+F(u,v)e^{-j2\pi\left(\frac{ux_0}{M}+\frac{vy_0}{N}\right)}$</span></td>
 </tr>
 <tr>
 <td>旋转性质</td>
-<td>令 $\begin{cases}x=r\cos\theta\y=r\sin\theta\end{cases}\space\begin{cases}u=w\cos\varphi\v=w\sin\varphi\end{cases}$，则在极坐标系中有 $f(r,\theta+\theta_0)\iff F(w,\varphi+\theta_0)$</td>
+<td>令 <span
+class="math inline">$\begin{cases}x=r\cos\theta\\y=r\sin\theta\end{cases}\space\begin{cases}u=w\cos\varphi\\v=w\sin\varphi\end{cases}$</span>，则在极坐标系中有
+<span
+class="math inline"><em>f</em>(<em>r</em>, <em>θ</em> + <em>θ</em><sub>0</sub>) ⇔ <em>F</em>(<em>w</em>, <em>φ</em> + <em>θ</em><sub>0</sub>)</span></td>
 </tr>
 <tr>
 <td>平均值</td>
-<td>$\overset{-}{f}(x,y)=\frac{1}{MN}\sum\limits_{x=0}^{M-1}\sum\limits_{y=0}^{N-1}f(x,y)=F(0,0)$</td>
+<td><span
+class="math inline">$\overset{-}{f}(x,y)=\frac{1}{MN}\sum\limits_{x=0}^{M-1}\sum\limits_{y=0}^{N-1}f(x,y)=F(0,0)$</span></td>
 </tr>
 </tbody>
 </table>
 <ul>
-<li>
-<p>利用可分离性，一个二维离散傅里叶变换(或逆变换)可通过进行两次一维离散傅里叶变换(或逆变换)来完成：</p>
-<p>先对 $f(x,y)$ 按行进行傅里叶变换得到 $F(x,v)$，再对 $F(x,v)$ 按列进行傅里叶变换,便可得到 $f(x,y)$的傅里叶变换结果。</p>
-</li>
-<li>
-<p>在数字图像处理中，为了清楚地分析图像傅里叶谱的分布情况，经常需要把空间频率平面坐标系的原点移到图像的中心点(M/2, N/2)的位置，即令 $u_0=M/2,v_0=N/2$，则 ==$f(x,y)(-1)^{x+y}\iff F(u-\frac{M}{2},v-\frac{N}{2})$==</p>
-</li>
-<li>
-<p>由旋转性质可知，如果 $f(x,y)$ 在空间域中旋转 $\theta_0$ 角度，则相应的傅里叶变换 $F(u,v)$ 在频率域中旋转同样的角度，反之亦然</p>
-</li>
+<li><p>利用可分离性，一个二维离散傅里叶变换(或逆变换)可通过进行两次一维离散傅里叶变换(或逆变换)来完成：</p>
+<p>先对 <span
+class="math inline"><em>f</em>(<em>x</em>, <em>y</em>)</span>
+按行进行傅里叶变换得到 <span
+class="math inline"><em>F</em>(<em>x</em>, <em>v</em>)</span>，再对
+<span class="math inline"><em>F</em>(<em>x</em>, <em>v</em>)</span>
+按列进行傅里叶变换,便可得到 <span
+class="math inline"><em>f</em>(<em>x</em>, <em>y</em>)</span>的傅里叶变换结果。</p></li>
+<li><p>在数字图像处理中，为了清楚地分析图像傅里叶谱的分布情况，经常需要把空间频率平面坐标系的原点移到图像的中心点(M/2,
+N/2)的位置，即令 <span
+class="math inline"><em>u</em><sub>0</sub> = <em>M</em>/2, <em>v</em><sub>0</sub> = <em>N</em>/2</span>，则
+<mark><span class="math inline">$f(x,y)(-1)^{x+y}\iff
+F(u-\frac{M}{2},v-\frac{N}{2})$</span></mark></p></li>
+<li><p>由旋转性质可知，如果 <span
+class="math inline"><em>f</em>(<em>x</em>, <em>y</em>)</span>
+在空间域中旋转 <span class="math inline"><em>θ</em><sub>0</sub></span>
+角度，则相应的傅里叶变换 <span
+class="math inline"><em>F</em>(<em>u</em>, <em>v</em>)</span>
+在频率域中旋转同样的角度，反之亦然</p></li>
 </ul>
-<ol start="3">
+<ol start="3" type="1">
 <li>数字图像傅里叶变换的频谱分布</li>
 </ol>
 <ul>
-<li>
-<p>为了便于观察谱的分布，使直流成分出现在窗口的中央，可采用图示的换位方法，根据傅里叶频率位移的性质,只需要用 $f(x,y)$ 乘上 $(-1)^{x+y}$ 因子进行傅里叶变换即可实现，变换后的坐标原点移动到了窗口中心</p>
-</li>
-<li>
-<p><strong>围绕坐标中心的是低频，向外是高频</strong>，频谱由中心向周边放射，而且各行各列的谱对中心点是<strong>共轭对称</strong>的</p>
-</li>
-<li>
-<p>利用这个特性，如果在数据存储和传输时，仅存储和传输它们中的一部分，进行逆变换恢复原图像前，按照对称性补充另一部分数据，就可达到<strong>数据压缩</strong>的目的</p>
-</li>
-<li>
-<p>傅里叶变换后的零频分量 $F(0,0)$，也称作直流分量，它反映了原始图像的<strong>平均亮度</strong></p>
-</li>
-<li>
-<p>图像灰度变化<strong>缓慢</strong>的区域，对应它变换后的<strong>低频</strong>分量部分；图像灰度呈<strong>阶跃变化</strong>的区域，对应变换后的<strong>高频</strong>分量部分。除颗粒噪音外，图像细节的边缘、轮廓处都是灰度变化<strong>突变</strong>区域，它们都具有变换后的<strong>高频</strong>分量特征</p>
-<p><img src="17.png" alt=""></p>
-</li>
+<li><p>为了便于观察谱的分布，使直流成分出现在窗口的中央，可采用图示的换位方法，根据傅里叶频率位移的性质,只需要用
+<span class="math inline"><em>f</em>(<em>x</em>, <em>y</em>)</span> 乘上
+<span class="math inline">(−1)<sup><em>x</em> + <em>y</em></sup></span>
+因子进行傅里叶变换即可实现，变换后的坐标原点移动到了窗口中心</p></li>
+<li><p><strong>围绕坐标中心的是低频，向外是高频</strong>，频谱由中心向周边放射，而且各行各列的谱对中心点是<strong>共轭对称</strong>的</p></li>
+<li><p>利用这个特性，如果在数据存储和传输时，仅存储和传输它们中的一部分，进行逆变换恢复原图像前，按照对称性补充另一部分数据，就可达到<strong>数据压缩</strong>的目的</p></li>
+<li><p>傅里叶变换后的零频分量 <span
+class="math inline"><em>F</em>(0, 0)</span>，也称作直流分量，它反映了原始图像的<strong>平均亮度</strong></p></li>
+<li><p>图像灰度变化<strong>缓慢</strong>的区域，对应它变换后的<strong>低频</strong>分量部分；图像灰度呈<strong>阶跃变化</strong>的区域，对应变换后的<strong>高频</strong>分量部分。除颗粒噪音外，图像细节的边缘、轮廓处都是灰度变化<strong>突变</strong>区域，它们都具有变换后的<strong>高频</strong>分量特征</p>
+<p><img src="17.png" /></p></li>
 </ul>
-<ol start="4">
+<ol start="4" type="1">
 <li>滤波器</li>
 </ol>
 <ul>
-<li>
-<p>低通滤波器</p>
+<li><p>低通滤波器</p>
 <ul>
 <li>使低频通过，高频衰减</li>
 <li>低频主要决定图像在<strong>平滑</strong>区域中总体灰度级的显示</li>
 <li>比原始图像少一些尖锐的细节部分</li>
 <li>用低通滤波器进行平滑处理可以使噪声伪轮廓等寄生效应减低到不显眼的程度</li>
 <li>由于低通滤波器对噪声等寄生成份滤除的同时，对有用高频成份也滤除。因此，这种去噪声的美化处理是<strong>以牺牲清晰度为代价而换取的</strong>。</li>
-</ul>
-</li>
-<li>
-<p>高通滤波器</p>
+</ul></li>
+<li><p>高通滤波器</p>
 <ul>
 <li>使高频通过，低频衰减</li>
 <li>高频决定图像细节部分，如边缘和噪声</li>
 <li>在平滑区域中减少灰度级变化，突出过渡(如边缘)</li>
 <li>灰度级的细节部分,使图像<strong>更加锐化</strong></li>
 </ul>
-<p><img src="18.png" alt=""></p>
-</li>
-<li>
-<p>理想低通滤波器：</p>
+<p><img src="18.png" /></p></li>
+<li><p>理想低通滤波器：</p>
 <ul>
-<li>$H(u,v)=\begin{cases}1&amp;D(u,v)\le D_0\0&amp;D(u,v)&gt;D_0\end{cases},D(u,v)=\sqrt{(u-M/2)^2+(v-N/2)^2}$</li>
-<li>空间域单位脉冲响应 $h(x,y)$ 两个主要特性：原点处有一个主要的中心成分，其主要决定模糊；中心成分周围集中、呈周期性的成分，其主要决定理想滤波器振铃现象。</li>
-<li>$h(x,y)$ 中同心振铃的半径与 $D_0$ 成<strong>反比</strong>：小的 $D_0$在 $h(x,y)$ 中产生稍微宽的振铃，并且在 $g(x,y)$产生 模糊；大的 $D_0$ 产生更多(增加数目) 细微的振铃和较少的模糊。</li>
-</ul>
-</li>
-<li>
-<p>巴特沃斯（Butterworth）低通滤波器</p>
+<li><span class="math inline">$H(u,v)=\begin{cases}1&amp;D(u,v)\le
+D_0\\0&amp;D(u,v)&gt;D_0\end{cases},D(u,v)=\sqrt{(u-M/2)^2+(v-N/2)^2}$</span></li>
+<li>空间域单位脉冲响应 <span
+class="math inline"><em>h</em>(<em>x</em>, <em>y</em>)</span>
+两个主要特性：原点处有一个主要的中心成分，其主要决定模糊；中心成分周围集中、呈周期性的成分，其主要决定理想滤波器振铃现象。</li>
+<li><span class="math inline"><em>h</em>(<em>x</em>, <em>y</em>)</span>
+中同心振铃的半径与 <span
+class="math inline"><em>D</em><sub>0</sub></span>
+成<strong>反比</strong>：小的 <span
+class="math inline"><em>D</em><sub>0</sub></span>在 <span
+class="math inline"><em>h</em>(<em>x</em>, <em>y</em>)</span>
+中产生稍微宽的振铃，并且在 <span
+class="math inline"><em>g</em>(<em>x</em>, <em>y</em>)</span>产生
+模糊；大的 <span class="math inline"><em>D</em><sub>0</sub></span>
+产生更多(增加数目) 细微的振铃和较少的模糊。</li>
+</ul></li>
+<li><p>巴特沃斯（Butterworth）低通滤波器</p>
 <ul>
-<li>一个n阶Butterworth低通滤波器的传递函数为：$H(u,v)=\frac{1}{1+[D(u,v)/D_0]^{2n}}$</li>
-<li>Butterworth低通滤波器又称最大平坦滤波器。它与理想低通滤波器不同，==它的通带与阻带之间没有明显的不连续性==。也就是说，在通带和阻带之间有一个平滑的过渡带。通常把 $H(u,v)$ 下降到某一值的那一点定为截止频率 $D_0$。</li>
+<li>一个n阶Butterworth低通滤波器的传递函数为：<span
+class="math inline">$H(u,v)=\frac{1}{1+[D(u,v)/D_0]^{2n}}$</span></li>
+<li>Butterworth低通滤波器又称最大平坦滤波器。它与理想低通滤波器不同，<mark>它的通带与阻带之间没有明显的不连续性</mark>。也就是说，在通带和阻带之间有一个平滑的过渡带。通常把
+<span class="math inline"><em>H</em>(<em>u</em>, <em>v</em>)</span>
+下降到某一值的那一点定为截止频率 <span
+class="math inline"><em>D</em><sub>0</sub></span>。</li>
 <li>一阶的Butterworth滤波器没有振铃；二阶的Butterworth滤波器有很微小的振铃，但阶数增大时振铃便成为一个重要因素；当阶数n充分大时，Butterworth滤波器就变成<strong>理想低通滤波器</strong></li>
-</ul>
-</li>
-<li>
-<p>高斯低通滤波器</p>
+</ul></li>
+<li><p>高斯低通滤波器</p>
 <ul>
-<li>传递函数：$H(u,v)=e^{-[\frac{D(u,v)}{D_0}]^n}$</li>
+<li>传递函数：<span
+class="math inline">$H(u,v)=e^{-[\frac{D(u,v)}{D_0}]^n}$</span></li>
 <li>由于指数低通滤波器有更快的衰减率，所以，经指数低通滤波的图像比Butterworth低通滤波器处理的图像<strong>稍模糊一些</strong>。</li>
-<li>由于指数低通滤波器的传递函数有较平滑的过渡带，所以图像中==没有振铃现象==。</li>
+<li>由于指数低通滤波器的传递函数有较平滑的过渡带，所以图像中<mark>没有振铃现象</mark>。</li>
 </ul>
-<p><img src="19.png" alt=""></p>
-</li>
-<li>
-<p>理想高通滤波器：$H(u,v)=\begin{cases}0&amp;D(u,v)\le D_0\1&amp;D(u,v)&gt;D_0\end{cases}$</p>
-</li>
-<li>
-<p>巴特沃斯高通滤波器：$H(u,v)=\frac{1}{1+[D_0/D(u,v)]^{2n}}$</p>
-</li>
-<li>
-<p>高斯高通滤波器（GHPF）：$H(u,v)=e^{-[\frac{D_0}{D(u,v)}]^n}$</p>
+<p><img src="19.png" /></p></li>
+<li><p>理想高通滤波器：<span
+class="math inline">$H(u,v)=\begin{cases}0&amp;D(u,v)\le
+D_0\\1&amp;D(u,v)&gt;D_0\end{cases}$</span></p></li>
+<li><p>巴特沃斯高通滤波器：<span
+class="math inline">$H(u,v)=\frac{1}{1+[D_0/D(u,v)]^{2n}}$</span></p></li>
+<li><p>高斯高通滤波器（GHPF）：<span
+class="math inline">$H(u,v)=e^{-[\frac{D_0}{D(u,v)}]^n}$</span></p>
 <ul>
-<li>GHPF比前两种滤波器<strong>更平滑</strong>，即使对微小物体和细线用GHPF过滤也是较清晰的。高斯高通滤波器的傅里叶反变换也是高斯的，因此==没有振铃现象==。</li>
+<li>GHPF比前两种滤波器<strong>更平滑</strong>，即使对微小物体和细线用GHPF过滤也是较清晰的。高斯高通滤波器的傅里叶反变换也是高斯的，因此<mark>没有振铃现象</mark>。</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a href="https://sjh200514.github.io">索心弓</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="https://sjh200514.github.io/2025/12/29/%E6%95%B0%E5%AD%97%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86Part3/">https://sjh200514.github.io/2025/12/29/%E6%95%B0%E5%AD%97%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86Part3/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles on this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless otherwise stated.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%95%B0%E5%AD%97%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86/">数字信号处理</a></div><div class="post-share"><div class="social-share" data-image="/img/2077.jpg" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/12/30/%E4%BB%99%E5%89%91%E5%A5%87%E4%BE%A0%E4%BC%A0%E4%BA%8C/" title="仙剑奇侠传二"><img class="cover" src="/2025/12/30/%E4%BB%99%E5%89%91%E5%A5%87%E4%BE%A0%E4%BC%A0%E4%BA%8C/cover.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">Previous</div><div class="info-item-2">仙剑奇侠传二</div></div><div class="info-2"><div class="info-item-1">仙剑奇侠传二 🗡游戏介绍 《仙剑奇侠传二》故事发生在一代的8年之后，剧情紧接一代，围绕王小虎、苏媚、沈欺霜、李忆如展开，讲述四人交织出一段错综复杂的故事。一代的主角以及全新人物在二代中出现，交待了前后两代发生过以及即将发生的感情恩怨纠葛。本作首次出现了御灵、虎煞、阵术、养蛊、喂毒等多种战斗和养成系统，战斗采用45度视角斜向以及全动态同步回合制的攻防方式。 🎮游玩统计  游玩时长：14.5h 通关时间：2023-12-20 评分：8.1/10  📷游戏截图展示      [{"url":"1.jpg","alt":"","title":""},{"url":"2.jpg","alt":"","title":""},{"url":"3.jpg","alt":"","title":""},{"url":"4.jpg","alt":"","title":""},{"url":"5.jpg","alt":"","title":""},{"url":"6.jpg","alt":"","title":""},{"url":"7.jpg","alt":"","title":""}]    </div></div></div></a><a class="pagination-related" href="/2025/12/28/%E7%94%9F%E5%8C%96%E5%8D%B1%E6%9C%BA3%E9%87%8D%E5%88%B6%E7%89%88/" title="生化危机3重制版"><img class="cover" src="/2025/12/28/%E7%94%9F%E5%8C%96%E5%8D%B1%E6%9C%BA3%E9%87%8D%E5%88%B6%E7%89%88/cover.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">Next</div><div class="info-item-2">生化危机3重制版</div></div><div class="info-2"><div class="info-item-1">生化危机3 重制版（Resident Evil 3 Remake） 🦠游戏介绍 不管逃到哪里也会被追至绝路。 浣熊市发生突如其来的生物灾害，更为危险的武器被投入到这个逐渐毁灭的城镇中…… 多重的危机，九死一生的惊险动作和重新构建的逃生剧情，一切超乎你的想象。 你能逃离这片绝望吗？ 同时收录另一款逃生游戏《Resident Evil Resistance》。 🎮游玩统计  游玩时长：18.4h 游玩周目：七周目 全成就通关时间：2024-07-06 评分：8.4/10  📷游戏截图展示      [{"url":"1.jpg","alt":"","title":""},{"url":"2.jpg","alt":"","title":""},{"url":"3.jpg","alt":"","title":""},{"url":"4.jpg","alt":"","title":""},{"url":"5.jpg","alt":"","title":""},{"url":"6.jpg","alt":"","title":""},{"url":"7.jpg","alt":"","ti...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2025/12/24/%E6%95%B0%E5%AD%97%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86Part1/" title="数字信号处理复习总结Part1"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-12-24</div><div class="info-item-2">数字信号处理复习总结Part1</div></div><div class="info-2"><div class="info-item-1">数字信号处理复习总结 01 信号的时域分析 一、信号的分类   周期信号的 $x(t),y(t)$ 的周期为$T_1$和$T_2$，若周期之比 $T_1/T_2$ 为有理数，则其和信号 $x(t)+y(t)$ 仍然是周期信号，其周期为 $T_1$ 和 $T_2$ 的最小公倍数。   周期信号可能分解为周期信号,  非周期信号也可能分解为周期信号   连续正弦信号一定是周期信号,而正弦序列不一定是周期序列。两连续周期信号之和不一定是周期信号,而两周期序列之和一定是周期序列。   能量信号与功率信号       连续信号 离散信号     能量 $$W=\lim\limits_{T\rightarrow\infty}\int_{-T}^{T} x(t)   功率 $$P=\lim\limits_{T\rightarrow\infty}\frac{1}{2T}\int_{-T}^{T} x(t)     能量信号：$0&lt;W&lt;\infty,P=0$。（信号的能量有限） 功率信号：$W\rightarrow\infty,0&lt;P&lt;\infty$。（信号的能量无限，但其...</div></div></div></a><a class="pagination-related" href="/2025/12/25/%E6%95%B0%E5%AD%97%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86%E4%BD%9C%E4%B8%9A/" title="数字信号处理作业"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-12-25</div><div class="info-item-2">数字信号处理作业</div></div><div class="info-2"><div class="info-item-1">数字信号处理 作业一   	      	    作业二   	      	    作业三   	      	    </div></div></div></a><a class="pagination-related" href="/2025/12/26/%E6%95%B0%E5%AD%97%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86Part2/" title="数字信号处理复习总结Part2"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-12-26</div><div class="info-item-2">数字信号处理复习总结Part2</div></div><div class="info-2"><div class="info-item-1">04 信号的傅里叶级数 一、傅里叶级数的定义  三角函数族的分解   基函数集：$\left{\cos n\omega t,\sin n\omega t\right},n=0,1,2,\cdots,\infty$ 分解系数： $a_0=\frac{&lt;x,1&gt;}{&lt;1,1&gt;}=\frac{1}{T}\int_{t_0}^{t_0+T}x(t)dt$ $a_n=\frac{&lt;x,\cos n\omega t&gt;}{&lt;\cos n\omega t,\cos n\omega t&gt;}=\frac{2}{T}\int_{t_0}^{t_0+T}x(t)\cos n\omega tdt$ $b_n=\frac{&lt;x,\sin n\omega t&gt;}{&lt;\sin n\omega t,\sin n\omega t&gt;}=\frac{2}{T}\int_{t_0}^{t_0+T}x(t)\sin n\omega tdt$ 函数表示： $x(t)=a_0+\sum\limits_{n=1}^{\infty}a_n\cos n\omeg...</div></div></div></a><a class="pagination-related" href="/2025/12/30/%E6%95%B0%E5%AD%97%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86Part4/" title="数字信号处理Part4"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-12-30</div><div class="info-item-2">数字信号处理Part4</div></div><div class="info-2"><div class="info-item-1">09 拉普拉斯变换及其应用 一、拉普拉斯变换  拉普拉斯变换（LT）/拉普拉斯反变换（逆变换）   拉普拉斯变换（LT）：$X(s)=\mathcal{L}[x(t)]=\int_{-\infty}^{\infty}x(t)e^{-st}dt$ 拉普拉斯反变换：$x(t)=\mathcal{L}^{-1}[X(s)]=\frac{1}{2\pi j}\int_{\sigma-j\infty}^{\sigma+j\infty}X(s)e^{st}ds$ 整体记为：$x(t)\overset{\mathcal{L}}{\leftrightarrow}X(s)$ 信号 $x(t)$ 可分解成复指数 $e^{st}$ 的线性组合,不同信号只是复指数 $e^{st}$ 前的系数 $X(s)$ 不同。$X(s)$ 是复频率 $s$ 的函数，称复频谱。 从傅里叶变换到拉普拉斯变换：FT为实频域，将信号分解为等幅振荡的频率分量；LT将信号分解成幅度可变的复指数分量，针对复频域，物理含义不如FT，对信号的频谱分析还是要通过FT   单边拉普拉斯变换    单边拉普拉斯正变换：$X(s)=\int_...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/2077.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">索心弓</div><div class="author-info-description">游戏爱好者，本科大三在读</div><div class="site-data"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">24</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">14</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">4</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/sjh200514"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/sjh200514" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:ethenatkinsyo5kuys@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dff;"></i></a><a class="social-icon" href="https://steamcommunity.com/profiles/76561199514418266/" target="_blank" title="Steam"><i class="fab fa-steam" style="color: #171a21;"></i></a><a class="social-icon" href="https://www.facebook.com/61584599353906" target="_blank" title="Facebook"><i class="fab fa-facebook" style="color: #1877F2;"></i></a><a class="social-icon" href="https://x.com/Cyberpunk207702" target="_blank" title="X"><i class="fab fa-x-twitter" style="color: #000000;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">欢迎来到我的主页！</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">07 调制、解调和滤波</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E9%80%9A%E4%BF%A1%E7%B3%BB%E7%BB%9F"><span class="toc-number">1.1.</span> <span class="toc-text">一、通信系统</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E4%BF%A1%E5%8F%B7%E8%B0%83%E5%88%B6"><span class="toc-number">1.2.</span> <span class="toc-text">二、信号调制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E4%BF%A1%E5%8F%B7%E8%A7%A3%E8%B0%83"><span class="toc-number">1.3.</span> <span class="toc-text">三、信号解调</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E4%BF%A1%E9%81%93%E5%A4%8D%E7%94%A8"><span class="toc-number">1.4.</span> <span class="toc-text">四、信道复用</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">2.</span> <span class="toc-text">08 离散信号的傅里叶变换</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E7%A6%BB%E6%95%A3%E4%BF%A1%E5%8F%B7%EF%BC%88%E5%BA%8F%E5%88%97%EF%BC%89%E7%9A%84%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2"><span class="toc-number">2.1.</span> <span class="toc-text">一、离散信号（序列）的傅里叶变换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E7%A6%BB%E6%95%A3%E4%BF%A1%E5%8F%B7%E7%9A%84%E9%A2%91%E5%9F%9F%E5%88%86%E6%9E%90"><span class="toc-number">2.2.</span> <span class="toc-text">二、离散信号的频域分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E7%A6%BB%E6%95%A3%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2"><span class="toc-number">2.3.</span> <span class="toc-text">三、离散傅里叶变换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E5%BF%AB%E9%80%9F%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2"><span class="toc-number">2.4.</span> <span class="toc-text">四、快速傅里叶变换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E4%BA%8C%E7%BB%B4%E7%A6%BB%E6%95%A3%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2"><span class="toc-number">2.5.</span> <span class="toc-text">五、二维离散傅里叶变换</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Posts</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/30/%E6%95%B0%E5%AD%97%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86Part4/" title="数字信号处理Part4">数字信号处理Part4</a><time datetime="2025-12-30T07:13:58.000Z" title="Created 2025-12-30 15:13:58">2025-12-30</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/12/30/%E4%BE%A0%E7%9B%97%E7%8C%8E%E8%BD%A6%E6%89%8B%E2%85%A4/" title="侠盗猎车手Ⅴ"><img src="/2025/12/30/%E4%BE%A0%E7%9B%97%E7%8C%8E%E8%BD%A6%E6%89%8B%E2%85%A4/cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="侠盗猎车手Ⅴ"/></a><div class="content"><a class="title" href="/2025/12/30/%E4%BE%A0%E7%9B%97%E7%8C%8E%E8%BD%A6%E6%89%8B%E2%85%A4/" title="侠盗猎车手Ⅴ">侠盗猎车手Ⅴ</a><time datetime="2025-12-30T04:39:38.000Z" title="Created 2025-12-30 12:39:38">2025-12-30</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/12/30/%E4%BB%99%E5%89%91%E5%A5%87%E4%BE%A0%E4%BC%A0%E5%9B%9B/" title="仙剑奇侠传四"><img src="/2025/12/30/%E4%BB%99%E5%89%91%E5%A5%87%E4%BE%A0%E4%BC%A0%E5%9B%9B/cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="仙剑奇侠传四"/></a><div class="content"><a class="title" href="/2025/12/30/%E4%BB%99%E5%89%91%E5%A5%87%E4%BE%A0%E4%BC%A0%E5%9B%9B/" title="仙剑奇侠传四">仙剑奇侠传四</a><time datetime="2025-12-30T04:38:37.000Z" title="Created 2025-12-30 12:38:37">2025-12-30</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/12/30/%E4%BB%99%E5%89%91%E5%A5%87%E4%BE%A0%E4%BC%A0%E4%B8%89%E5%A4%96%E4%BC%A0%C2%B7%E9%97%AE%E6%83%85%E7%AF%87/" title="仙剑奇侠传三外传·问情篇"><img src="/2025/12/30/%E4%BB%99%E5%89%91%E5%A5%87%E4%BE%A0%E4%BC%A0%E4%B8%89%E5%A4%96%E4%BC%A0%C2%B7%E9%97%AE%E6%83%85%E7%AF%87/cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="仙剑奇侠传三外传·问情篇"/></a><div class="content"><a class="title" href="/2025/12/30/%E4%BB%99%E5%89%91%E5%A5%87%E4%BE%A0%E4%BC%A0%E4%B8%89%E5%A4%96%E4%BC%A0%C2%B7%E9%97%AE%E6%83%85%E7%AF%87/" title="仙剑奇侠传三外传·问情篇">仙剑奇侠传三外传·问情篇</a><time datetime="2025-12-30T04:38:27.000Z" title="Created 2025-12-30 12:38:27">2025-12-30</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/12/30/%E4%BB%99%E5%89%91%E5%A5%87%E4%BE%A0%E4%BC%A0%E4%BA%8C/" title="仙剑奇侠传二"><img src="/2025/12/30/%E4%BB%99%E5%89%91%E5%A5%87%E4%BE%A0%E4%BC%A0%E4%BA%8C/cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="仙剑奇侠传二"/></a><div class="content"><a class="title" href="/2025/12/30/%E4%BB%99%E5%89%91%E5%A5%87%E4%BE%A0%E4%BC%A0%E4%BA%8C/" title="仙剑奇侠传二">仙剑奇侠传二</a><time datetime="2025-12-30T04:36:23.000Z" title="Created 2025-12-30 12:36:23">2025-12-30</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By 索心弓</span><span class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.3</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Reading Mode"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="Toggle Between Traditional and Simplified Chinese">繁</button><button id="darkmode" type="button" title="Toggle Between Light and Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle Between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Settings"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back to Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.3"></script><script src="/js/main.js?v=5.5.3"></script><script src="/js/tw_cn.js?v=5.5.3"></script><div class="js-pjax"><script>(() => {
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a href="https://sjh200514.github.io">索心弓</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="https://sjh200514.github.io/2025/12/29/%E6%95%B0%E5%AD%97%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86Part3/">https://sjh200514.github.io/2025/12/29/%E6%95%B0%E5%AD%97%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86Part3/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles on this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless otherwise stated.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%95%B0%E5%AD%97%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86/">数字信号处理</a></div><div class="post-share"><div class="social-share" data-image="/img/2077.jpg" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/12/30/%E4%BB%99%E5%89%91%E5%A5%87%E4%BE%A0%E4%BC%A0%E4%BA%8C/" title="仙剑奇侠传二"><img class="cover" src="/2025/12/30/%E4%BB%99%E5%89%91%E5%A5%87%E4%BE%A0%E4%BC%A0%E4%BA%8C/cover.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">Previous</div><div class="info-item-2">仙剑奇侠传二</div></div><div class="info-2"><div class="info-item-1">仙剑奇侠传二 🗡游戏介绍 《仙剑奇侠传二》故事发生在一代的8年之后，剧情紧接一代，围绕王小虎、苏媚、沈欺霜、李忆如展开，讲述四人交织出一段错综复杂的故事。一代的主角以及全新人物在二代中出现，交待了前后两代发生过以及即将发生的感情恩怨纠葛。本作首次出现了御灵、虎煞、阵术、养蛊、喂毒等多种战斗和养成系统，战斗采用45度视角斜向以及全动态同步回合制的攻防方式。 🎮游玩统计  游玩时长：14.5h 通关时间：2023-12-20 评分：8.1/10  📷游戏截图展示      [{"url":"1.jpg","alt":"","title":""},{"url":"2.jpg","alt":"","title":""},{"url":"3.jpg","alt":"","title":""},{"url":"4.jpg","alt":"","title":""},{"url":"5.jpg","alt":"","title":""},{"url":"6.jpg","alt":"","title":""},{"url":"7.jpg","alt":"","title...</div></div></div></a><a class="pagination-related" href="/2025/12/28/%E7%94%9F%E5%8C%96%E5%8D%B1%E6%9C%BA3%E9%87%8D%E5%88%B6%E7%89%88/" title="生化危机3重制版"><img class="cover" src="/2025/12/28/%E7%94%9F%E5%8C%96%E5%8D%B1%E6%9C%BA3%E9%87%8D%E5%88%B6%E7%89%88/cover.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">Next</div><div class="info-item-2">生化危机3重制版</div></div><div class="info-2"><div class="info-item-1">生化危机3 重制版（Resident Evil 3 Remake） 🦠游戏介绍 不管逃到哪里也会被追至绝路。 浣熊市发生突如其来的生物灾害，更为危险的武器被投入到这个逐渐毁灭的城镇中…… 多重的危机，九死一生的惊险动作和重新构建的逃生剧情，一切超乎你的想象。 你能逃离这片绝望吗？ 同时收录另一款逃生游戏《Resident Evil Resistance》。 🎮游玩统计  游玩时长：18.4h 游玩周目：七周目 全成就通关时间：2024-07-06 评分：8.4/10  📷游戏截图展示      [{"url":"1.jpg","alt":"","title":""},{"url":"2.jpg","alt":"","title":""},{"url":"3.jpg","alt":"","title":""},{"url":"4.jpg","alt":"","title":""},{"url":"5.jpg","alt":"","title":""},{"url":"6.jpg","alt":"","title":""},{"url":"7.j...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2025/12/30/%E6%95%B0%E5%AD%97%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86Part4/" title="数字信号处理Part4"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-12-30</div><div class="info-item-2">数字信号处理Part4</div></div><div class="info-2"><div class="info-item-1">09 拉普拉斯变换及其应用 一、拉普拉斯变换  拉普拉斯变换（LT）/拉普拉斯反变换（逆变换）   拉普拉斯变换（LT）：X(s) = ℒ[x(t)] = ∫−∞∞x(t)e−stdt 拉普拉斯反变换：$x(t)=\mathcal{L}^{-1}[X(s)]=\frac{1}{2\pi j}\int_{\sigma-j\infty}^{\sigma+j\infty}X(s)e^{st}ds$ 整体记为：$x(t)\overset{\mathcal{L}}{\leftrightarrow}X(s)$ 信号 x(t) 可分解成复指数 est 的线性组合,不同信号只是复指数 est 前的系数 X(s) 不同。X(s) 是复频率 s 的函数，称复频谱。 从傅里叶变换到拉普拉斯变换：FT为实频域，将信号分解为等幅振荡的频率分量；LT将信号分解成幅度可变的复指数分量，针对复频域，物理含义不如FT，对信号的频谱分析还是要通过FT   单边拉普拉斯变换   单边拉普拉斯正变换：X(s) = ∫0−∞x(t)e−stdt 单边拉普拉斯反变换：$x(t...</div></div></div></a><a class="pagination-related" href="/2025/12/26/%E6%95%B0%E5%AD%97%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86Part2/" title="数字信号处理复习总结Part2"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-12-26</div><div class="info-item-2">数字信号处理复习总结Part2</div></div><div class="info-2"><div class="info-item-1">04 信号的傅里叶级数 一、傅里叶级数的定义  三角函数族的分解   基函数集：{cos nωt, sin nωt}, n = 0, 1, 2, ⋯, ∞ 分解系数： $a_0=\frac{&lt;x,1&gt;}{&lt;1,1&gt;}=\frac{1}{T}\int_{t_0}^{t_0+T}x(t)dt$ $a_n=\frac{&lt;x,\cos n\omega t&gt;}{&lt;\cos n\omega t,\cos n\omega t&gt;}=\frac{2}{T}\int_{t_0}^{t_0+T}x(t)\cos n\omega tdt$ $b_n=\frac{&lt;x,\sin n\omega t&gt;}{&lt;\sin n\omega t,\sin n\omega t&gt;}=\frac{2}{T}\int_{t_0}^{t_0+T}x(t)\sin n\omega tdt$ 函数表示： $x(t)=a_0+\sum\limits_{n=1}^{\infty}a_n\cos n\omega t+\sum\limits...</div></div></div></a><a class="pagination-related" href="/2025/12/25/%E6%95%B0%E5%AD%97%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86%E4%BD%9C%E4%B8%9A/" title="数字信号处理作业"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-12-25</div><div class="info-item-2">数字信号处理作业</div></div><div class="info-2"><div class="info-item-1">数字信号处理 作业一   	      	    作业二   	      	    作业三   	      	    </div></div></div></a><a class="pagination-related" href="/2025/12/24/%E6%95%B0%E5%AD%97%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86Part1/" title="数字信号处理复习总结Part1"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-12-24</div><div class="info-item-2">数字信号处理复习总结Part1</div></div><div class="info-2"><div class="info-item-1">数字信号处理复习总结 01 信号的时域分析 一、信号的分类  周期信号的 x(t), y(t) 的周期为T1和T2，若周期之比 T1/T2 为有理数，则其和信号 x(t) + y(t) 仍然是周期信号，其周期为 T1 和 T2 的最小公倍数。 周期信号可能分解为周期信号, 非周期信号也可能分解为周期信号 连续正弦信号一定是周期信号,而正弦序列不一定是周期序列。两连续周期信号之和不一定是周期信号,而两周期序列之和一定是周期序列。 能量信号与功率信号           连续信号 离散信号     能量 $$W=\lim\limits_{T\rightarrow\infty}\int_{-T}^{T}|x(t)|^2dt$$ $$W=\lim\limits_{N\rightarrow\infty}\sum\limits_{n=-N}^{N}|x[n]|^2$$   功率 $$P=\lim\limits_{T\rightarrow\infty}\frac{1}{2T}\int_{-T}^{T}|x(t)|^2dt$$...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/2077.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">索心弓</div><div class="author-info-description">游戏爱好者，本科大三在读</div><div class="site-data"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">24</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">14</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">4</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/sjh200514"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/sjh200514" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:ethenatkinsyo5kuys@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dff;"></i></a><a class="social-icon" href="https://steamcommunity.com/profiles/76561199514418266/" target="_blank" title="Steam"><i class="fab fa-steam" style="color: #171a21;"></i></a><a class="social-icon" href="https://www.facebook.com/61584599353906" target="_blank" title="Facebook"><i class="fab fa-facebook" style="color: #1877F2;"></i></a><a class="social-icon" href="https://x.com/Cyberpunk207702" target="_blank" title="X"><i class="fab fa-x-twitter" style="color: #000000;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">欢迎来到我的主页！</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%B0%83%E5%88%B6%E8%A7%A3%E8%B0%83%E5%92%8C%E6%BB%A4%E6%B3%A2"><span class="toc-number">1.</span> <span class="toc-text">07 调制、解调和滤波</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E9%80%9A%E4%BF%A1%E7%B3%BB%E7%BB%9F"><span class="toc-number">1.1.</span> <span class="toc-text">一、通信系统</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E4%BF%A1%E5%8F%B7%E8%B0%83%E5%88%B6"><span class="toc-number">1.2.</span> <span class="toc-text">二、信号调制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E4%BF%A1%E5%8F%B7%E8%A7%A3%E8%B0%83"><span class="toc-number">1.3.</span> <span class="toc-text">三、信号解调</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E4%BF%A1%E9%81%93%E5%A4%8D%E7%94%A8"><span class="toc-number">1.4.</span> <span class="toc-text">四、信道复用</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%A6%BB%E6%95%A3%E4%BF%A1%E5%8F%B7%E7%9A%84%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2"><span class="toc-number">2.</span> <span class="toc-text">08 离散信号的傅里叶变换</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E7%A6%BB%E6%95%A3%E4%BF%A1%E5%8F%B7%E5%BA%8F%E5%88%97%E7%9A%84%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2"><span class="toc-number">2.1.</span> <span class="toc-text">一、离散信号（序列）的傅里叶变换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E7%A6%BB%E6%95%A3%E4%BF%A1%E5%8F%B7%E7%9A%84%E9%A2%91%E5%9F%9F%E5%88%86%E6%9E%90"><span class="toc-number">2.2.</span> <span class="toc-text">二、离散信号的频域分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E7%A6%BB%E6%95%A3%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2"><span class="toc-number">2.3.</span> <span class="toc-text">三、离散傅里叶变换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E5%BF%AB%E9%80%9F%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2"><span class="toc-number">2.4.</span> <span class="toc-text">四、快速傅里叶变换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E4%BA%8C%E7%BB%B4%E7%A6%BB%E6%95%A3%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2"><span class="toc-number">2.5.</span> <span class="toc-text">五、二维离散傅里叶变换</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Posts</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/30/%E6%95%B0%E5%AD%97%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86Part4/" title="数字信号处理Part4">数字信号处理Part4</a><time datetime="2025-12-30T07:13:58.000Z" title="Created 2025-12-30 15:13:58">2025-12-30</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/12/30/%E4%BE%A0%E7%9B%97%E7%8C%8E%E8%BD%A6%E6%89%8B%E2%85%A4/" title="侠盗猎车手Ⅴ"><img src="/2025/12/30/%E4%BE%A0%E7%9B%97%E7%8C%8E%E8%BD%A6%E6%89%8B%E2%85%A4/cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="侠盗猎车手Ⅴ"/></a><div class="content"><a class="title" href="/2025/12/30/%E4%BE%A0%E7%9B%97%E7%8C%8E%E8%BD%A6%E6%89%8B%E2%85%A4/" title="侠盗猎车手Ⅴ">侠盗猎车手Ⅴ</a><time datetime="2025-12-30T04:39:38.000Z" title="Created 2025-12-30 12:39:38">2025-12-30</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/12/30/%E4%BB%99%E5%89%91%E5%A5%87%E4%BE%A0%E4%BC%A0%E5%9B%9B/" title="仙剑奇侠传四"><img src="/2025/12/30/%E4%BB%99%E5%89%91%E5%A5%87%E4%BE%A0%E4%BC%A0%E5%9B%9B/cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="仙剑奇侠传四"/></a><div class="content"><a class="title" href="/2025/12/30/%E4%BB%99%E5%89%91%E5%A5%87%E4%BE%A0%E4%BC%A0%E5%9B%9B/" title="仙剑奇侠传四">仙剑奇侠传四</a><time datetime="2025-12-30T04:38:37.000Z" title="Created 2025-12-30 12:38:37">2025-12-30</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/12/30/%E4%BB%99%E5%89%91%E5%A5%87%E4%BE%A0%E4%BC%A0%E4%B8%89%E5%A4%96%E4%BC%A0%C2%B7%E9%97%AE%E6%83%85%E7%AF%87/" title="仙剑奇侠传三外传·问情篇"><img src="/2025/12/30/%E4%BB%99%E5%89%91%E5%A5%87%E4%BE%A0%E4%BC%A0%E4%B8%89%E5%A4%96%E4%BC%A0%C2%B7%E9%97%AE%E6%83%85%E7%AF%87/cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="仙剑奇侠传三外传·问情篇"/></a><div class="content"><a class="title" href="/2025/12/30/%E4%BB%99%E5%89%91%E5%A5%87%E4%BE%A0%E4%BC%A0%E4%B8%89%E5%A4%96%E4%BC%A0%C2%B7%E9%97%AE%E6%83%85%E7%AF%87/" title="仙剑奇侠传三外传·问情篇">仙剑奇侠传三外传·问情篇</a><time datetime="2025-12-30T04:38:27.000Z" title="Created 2025-12-30 12:38:27">2025-12-30</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/12/30/%E4%BB%99%E5%89%91%E5%A5%87%E4%BE%A0%E4%BC%A0%E4%BA%8C/" title="仙剑奇侠传二"><img src="/2025/12/30/%E4%BB%99%E5%89%91%E5%A5%87%E4%BE%A0%E4%BC%A0%E4%BA%8C/cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="仙剑奇侠传二"/></a><div class="content"><a class="title" href="/2025/12/30/%E4%BB%99%E5%89%91%E5%A5%87%E4%BE%A0%E4%BC%A0%E4%BA%8C/" title="仙剑奇侠传二">仙剑奇侠传二</a><time datetime="2025-12-30T04:36:23.000Z" title="Created 2025-12-30 12:36:23">2025-12-30</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By 索心弓</span><span class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.3</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Reading Mode"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="Toggle Between Traditional and Simplified Chinese">繁</button><button id="darkmode" type="button" title="Toggle Between Light and Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle Between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Settings"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back to Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.3"></script><script src="/js/main.js?v=5.5.3"></script><script src="/js/tw_cn.js?v=5.5.3"></script><div class="js-pjax"><script>(() => {
   const loadMathjax = () => {
     if (!window.MathJax) {
       window.MathJax = {

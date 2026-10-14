@@ -32,7 +32,7 @@ h1 { font-size: 28px; line-height: 1.2; margin: 22px 0 16px; }
 .profile-links li { display: flex; align-items: baseline; gap: 9px; margin: 0 0 7px; }
 .profile-links span { width: 18px; flex-shrink: 0; color: var(--muted); font-size: 14px; }
 .profile-links a { overflow-wrap: anywhere; min-width: 0; }
-.profile-links a[href^="mailto:"] { font-size: 14px; }
+.profile-links a[href^="mailto:"] { font-size: 13px; }
 main { min-width: 0; }
 section { margin-bottom: 32px; scroll-margin-top: 90px; }
 h2 { font-size: 25px; line-height: 1.25; margin: 0 0 15px; padding-bottom: 9px; border-bottom: 1px solid var(--line); font-weight: 700; letter-spacing: -.3px; }

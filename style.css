@@ -22,10 +22,12 @@ a:focus-visible { outline: 2px solid var(--link); outline-offset: 4px; border-ra
 .skip-link:focus { top: 10px; }
 .site-header { border-bottom: 1px solid var(--line); }
 .navigation { max-width: 1180px; margin: auto; padding: 17px 28px; display: flex; justify-content: space-between; align-items: center; gap: 24px; }
-.brand, .brand:visited { color: var(--ink); font-size: 19px; font-weight: 700; white-space: nowrap; }
-.brand span { margin-left: 8px; font-size: 16px; font-weight: 400; }
+.brand { color: var(--ink); font-size: 19px; font-weight: 700; white-space: nowrap; }
+.brand-en, .brand-cn { color: var(--ink); text-decoration: none; }
+.brand .brand-cn { margin-left: 8px; font-size: 16px; font-weight: 400; }
 .nav-links { display: flex; gap: 24px; font-size: 16px; }
 .nav-links a { color: #414b55; white-space: nowrap; }
+.nav-links a:hover { color: var(--link); }
 .page { max-width: 1180px; margin: 42px auto 0; padding: 0 28px; display: grid; grid-template-columns: 205px minmax(0, 1fr); gap: 65px; }
 .profile { align-self: start; position: sticky; top: 98px; font-size: 16px; line-height: 1.5; }
 .avatar { display: block; width: 180px; height: 180px; padding: 5px; border: 1px solid var(--line); border-radius: 50%; object-fit: cover; }
